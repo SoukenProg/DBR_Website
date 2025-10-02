@@ -1,1 +1,18 @@
-import Link from "next/link";export function WorkCard({work}:{work:{title:string;slug:string;jacket?:string;releaseDate?:string;tags?:string[]}}){return(<Link href={`/works/${work.slug}`} className="group border border-white/10 rounded-lg overflow-hidden hover:border-white/30">{work.jacket?<img src={work.jacket} alt={work.title} className="aspect-square object-cover"/>:<div className="aspect-square bg-white/5"/>}<div className="p-3"><div className="font-semibold group-hover:underline">{work.title}</div><div className="text-xs text-white/60">{work.releaseDate??""}</div>{work?.tags?.length?(<div className="mt-2 flex flex-wrap gap-1">{work.tags.slice(0,3).map(t=>(<span key={t} className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 border border-white/10">{t}</span>))}</div>):null}</div></Link>)}
+import Link from "next/link";
+
+export function WorkCard({work}: {
+    work: { title: string; slug: string; jacket?: string; releaseDate?: string; tags?: string[] }
+}) {
+    return (<Link href={`/works/${work.slug}`}
+                  className="group border border-white/10 rounded-lg overflow-hidden hover:border-white/30">{work.jacket ?
+        <img src={work.jacket} alt={work.title} className="aspect-square object-cover"/> :
+        <div className="aspect-square bg-white/5"/>}
+        <div className="p-3">
+            <div className="font-semibold group-hover:underline">{work.title}</div>
+            <div className="text-xs text-white/60">{work.releaseDate ?? ""}</div>
+            {work?.tags?.length ? (<div className="mt-2 flex flex-wrap gap-1">{work.tags.slice(0, 3).map(t => (
+                <span key={t}
+                      className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 border border-white/10">{t}</span>))}</div>) : null}
+        </div>
+    </Link>)
+}

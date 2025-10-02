@@ -1,1 +1,9 @@
-import { listLinks } from "@/lib/cms";import { SocialLinks } from "@/components/SocialLinks";export default async function LinksPage(){const links=await listLinks();return(<div className="container py-12"><h1 className="text-2xl font-bold mb-6">Links</h1><SocialLinks items={links}/></div>)}
+import {listLinks} from "@/lib/cms";
+import {SocialLinks} from "@/components/SocialLinks";
+
+export default async function LinksPage() {
+    const links = await listLinks();
+    return (
+        <div className="container py-12"><h1 className="text-2xl font-bold mb-6">Links</h1><SocialLinks items={links}/>
+        </div>)
+}

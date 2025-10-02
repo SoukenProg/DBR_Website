@@ -1,1 +1,24 @@
-import { NextResponse } from "next/server";export async function POST(req:Request){try{const body=await req.json();const { name, discordId, purpose, bio }=body??{};if(!name||!discordId){return NextResponse.json({ok:false,error:"name and discordId are required"},{status:400});}const webhook=process.env.DISCORD_WEBHOOK_URL;if(!webhook){return NextResponse.json({ok:true,note:"Mock mode: no webhook set"});}const content=[`**System D.B.R. Discord 参加希望**`,`- Name: ${name}`,`- Discord: ${discordId}`,purpose?`- Purpose: ${purpose}`:null,bio?`- Bio: ${bio}`:null].filter(Boolean).join("\n");await fetch(webhook,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({content})});return NextResponse.json({ok:true});}catch{return NextResponse.json({ok:false,error:"Unexpected error"},{status:500});}}
+import {NextResponse} from "next/server";
+
+export async function POST(req: Request) {
+    try {
+        const body = await req.json();
+        const {name, discordId, purpose, bio} = body ?? {};
+        if (!name || !discordId) {
+            return NextResponse.json({ok: false, error: "name and discordId are required"}, {status: 400});
+        }
+        const webhook = process.env.DISCORD_WEBHOOK_URL;
+        if (!webhook) {
+            return NextResponse.json({ok: true, note: "Mock mode: no webhook set"});
+        }
+        const content = [`**System D.B.R. Discord 参加希望**`, `- Name: ${name}`, `- Discord: ${discordId}`, purpose ? `- Purpose: ${purpose}` : null, bio ? `- Bio: ${bio}` : null].filter(Boolean).join("\n");
+        await fetch(webhook, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({content})
+        });
+        return NextResponse.json({ok: true});
+    } catch {
+        return NextResponse.json({ok: false, error: "Unexpected error"}, {status: 500});
+    }
+}
