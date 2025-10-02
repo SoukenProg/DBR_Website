@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env.local
+    environment:
+      NODE_ENV: development
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+      - ./.pnpm-store/v3:/app/.pnpm-store/v3
+    command: pnpm dev
+    tty: true
+    stdin_open: true
+volumes:
+  node_modules:

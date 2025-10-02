@@ -1,0 +1,1 @@
+import { listEvents } from "@/lib/cms";import { EventCard } from "@/components/EventCard";export default async function EventsPage(){const events=await listEvents();return(<div className="container py-12"><h1 className="text-2xl font-bold mb-6">Events</h1><div className="grid md:grid-cols-2 gap-4">{events.map(e=>(<EventCard key={e.slug} event={e}/>))}</div></div>)}
