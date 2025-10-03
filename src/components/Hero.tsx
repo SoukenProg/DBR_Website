@@ -5,8 +5,10 @@ export function Hero({work}: { work?: { title: string; slug: string; jacket?: st
         <div
             className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(255,51,51,0.15),transparent_40%),radial-gradient(circle_at_30%_70%,rgba(51,170,255,0.12),transparent_40%),radial-gradient(circle_at_70%_30%,rgba(51,255,51,0.1),transparent_40%)]"/>
         <div className="container text-center"><h1
-            className="text-4xl md:text-6xl font-extrabold tracking-widest drop-shadow">System D.B.R.</h1><p
-            className="mt-4 text-white/70">Dual Blades × Rhythm — 音と光のサークル</p>{work && (<div
+            className="text-4xl md:text-6xl font-extrabold tracking-widest drop-shadow">System <span
+            className="text-green-600">D.</span><span className="text-blue-700">B.</span><span
+            className="text-red-500">R.</span></h1>
+            <p className="mt-4 text-white/70">Dual Blades × Rhythm — 音と光のサークル</p>{work && (<div
             className="mt-10 inline-flex flex-col items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 shadow-glow">{work.jacket ? (
             <img src={work.jacket} alt={work.title} className="w-48 h-48 object-cover rounded"/>) : null}
             <div className="text-lg">最新作：{work.title}</div>

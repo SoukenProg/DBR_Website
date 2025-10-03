@@ -9,7 +9,7 @@ export default async function HomePage() {
     const upcoming = events?.[0];
     return (<div><Hero work={work}/>
         <section className="container py-12"><h2 className="text-xl font-bold mb-4">サークルの紹介</h2><p
-            className="text-white/80">System D.B.R. は、リズムゲーム文脈に合うダンスミュージックとビジュアルを制作するサークルです。ダーク基調に赤・青・緑のグロー、Dual
+            className="text-white/80">System D.B.R. は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。ダーク基調に赤・青・緑のグロー、Dual
             Bladesモチーフを軸に展開します。</p></section>
         <section className="container py-12"><h2 className="text-xl font-bold mb-4">主催プロフィール（要約）</h2><p
             className="text-white/80">Souken521。作編曲／サウンドデザイン／3D & Motion。詳しくは <Link href="/about"
