@@ -1,13 +1,17 @@
 "use client";
 import Link from "next/link";
+import type { Route } from "next";
 import {useState} from "react";
 
 export function Header() {
     const [open, setOpen] = useState(false);
-    const nav = [{href: "/works", label: "Works"}, {href: "/events", label: "Events"}, {
-        href: "/about",
-        label: "About"
-    }, {href: "/discord", label: "Discord"}, {href: "/links", label: "Links"}];
+    const nav = [
+        { href: "/works", label: "Works" },
+        { href: "/events", label: "Events" },
+        { href: "/about", label: "About" },
+        { href: "/discord", label: "Discord" },
+        { href: "/links", label: "Links" },
+    ] as const satisfies ReadonlyArray<{ href: Route; label: string }>;
     return (<header className="sticky top-0 z-50 backdrop-blur bg-black/60 border-b border-white/10">
         <div className="container h-14 flex items-center justify-between"><Link href="/"
                                                                                 className="font-bold tracking-wider">System

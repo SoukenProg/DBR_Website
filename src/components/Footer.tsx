@@ -6,7 +6,7 @@ export function Footer() {
             className="text-sm">© {new Date().getFullYear()} System D.B.R.</p>
             <div className="flex gap-4 text-sm">
                 <Link href="/privacy">プライバシー</Link><a href="https://x.com/souken521" target="_blank" rel="noreferrer">X</a>
-                <Link href="https://www.youtube.com" target="_blank" rel="noreferrer">YouTube</Link>
+                <Link href="https://www.youtube.com/@souken_DBR" target="_blank" rel="noreferrer">YouTube</Link>
                 <Link href="https://systemdbr.booth.pm" target="_blank" rel="noreferrer">BOOTH</Link>
             </div>
         </div>
