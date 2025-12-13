@@ -4,6 +4,38 @@ import {SocialLinks} from "@/components/SocialLinks";
 export default async function LinksPage() {
     const links = await listLinks();
     return (
-        <div className="container py-12"><h1 className="text-2xl font-bold mb-6">Links</h1><SocialLinks items={links}/>
-        </div>)
+        <div className="max-w-4xl mx-auto px-6 py-12">
+            {/* ヘッダーセクション */}
+            <div className="text-center mb-12">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accentRed via-accentBlue to-accentGreen bg-clip-text text-transparent">
+                    Links
+                </h1>
+                <p className="text-lg text-gray-300">
+                    System D.B.R. の各種SNS・配信プラットフォーム
+                </p>
+            </div>
+
+            {/* リンク一覧 */}
+            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+                <h2 className="text-2xl font-bold mb-6 text-accentBlue">公式リンク</h2>
+                <SocialLinks items={links}/>
+            </div>
+
+            {/* 注意事項 */}
+            <div className="bg-gradient-to-br from-accentBlue/10 to-accentRed/10 border border-accentBlue/30 rounded-lg p-8 mt-8">
+                <h2 className="text-2xl font-bold mb-4">お知らせ</h2>
+                <div className="space-y-3 text-gray-300">
+                    <p>
+                        各プラットフォームにて、最新の楽曲リリース情報やイベント出展情報を発信しています。
+                    </p>
+                    <ul className="list-disc list-inside space-y-2 ml-4 text-sm">
+                        <li>楽曲の配信・販売情報</li>
+                        <li>イベント・即売会の出展告知</li>
+                        <li>制作進捗や裏話の共有</li>
+                        <li>コミュニティとの交流</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
 }

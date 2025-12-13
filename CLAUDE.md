@@ -31,8 +31,7 @@ docker compose up --build -d
 必須の環境変数（開発時は `.env.local` を作成）:
 - `MICROCMS_SERVICE_DOMAIN` - microCMSのサービスドメイン
 - `MICROCMS_API_KEY` - microCMSのAPIキー
-- `REVALIDATE_SECRET` - Webhook経由のキャッシュ再検証用シークレット
-- `DISCORD_WEBHOOK_URL`（任意） - 参加申請フォーム送信先のDiscord Webhook URL
+
 
 microCMSの認証情報がない場合、`src/lib/cms.ts` で定義されたモックデータにフォールバックします。
 
@@ -70,7 +69,7 @@ App Router（Next.js 15）でTypeScriptの型付きルートを有効化:
 /events/[slug]             # イベント詳細ページ（?depth=2使用）
 /links                      # SNSリンクページ
 /about                      # プロフィール/紹介ページ
-/discord                    # Discord参加申請フォーム
+/discord                    # Discordのお知らせページ
 /privacy                    # プライバシーポリシー
 /api/revalidate            # コンテンツ更新用Webhookエンドポイント
 /api/forms/discord-apply   # Discord申請フォーム送信ハンドラ
@@ -108,12 +107,6 @@ Next.js Imageコンポーネントの設定でmicroCMSアセットを許可:
 - ポート3000で公開（docker-composeで4004にマッピング）
 - 本番環境変数は `.env.production` を使用
 
-### フォーム処理
-
-Discord申請フォーム（`/api/forms/discord-apply`）:
-- react-hook-form + Zodでバリデーション
-- Discord Webhookにフォーマット済みメッセージを送信
-- Webhook未設定時は優雅に処理（開発用モックモード）
 
 ### オンデマンド再検証
 
