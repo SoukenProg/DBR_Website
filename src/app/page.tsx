@@ -12,6 +12,36 @@ export default async function HomePage() {
             <Hero work={work}/>
 
             <div className="max-w-4xl mx-auto px-6 py-12 space-y-8">
+                {/* 作品一覧 */}
+                <section className="bg-gradient-to-br from-accentRed/10 to-accentBlue/10 border border-accentRed/30 rounded-lg p-8">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">作品一覧</h2>
+                    <div className="space-y-3 text-gray-300">
+                        <p className="leading-relaxed">
+                            リズムゲーム向けのオリジナル楽曲を制作しています。
+                            Uplifting Trance、Future Bass、Tech House、Hardstyle など、多彩なジャンルの作品をお楽しみいただけます。
+                        </p>
+                        {work && (
+                            <div className="bg-gray-900/50 rounded-lg p-4 mt-4">
+                                <p className="text-sm text-gray-400 mb-2">最新作</p>
+                                <p className="font-semibold text-white">{work.title}</p>
+                                <div className="mt-3">
+                                    <Link href={`/works/${work.slug}`} className="text-accentRed hover:text-accentRed/80 underline text-sm">
+                                        作品詳細を見る →
+                                    </Link>
+                                </div>
+                            </div>
+                        )}
+                        <div className="pt-2">
+                            <Link
+                                href="/works"
+                                className="inline-flex items-center gap-2 text-accentBlue hover:text-accentBlue/80 font-semibold underline"
+                            >
+                                すべての作品を見る →
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
                 {/* サークルの紹介 */}
                 <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentBlue">サークルの紹介</h2>
