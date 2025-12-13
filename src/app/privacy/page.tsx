@@ -3,7 +3,7 @@ export default function PrivacyPage() {
         <div className="max-w-4xl mx-auto px-6 py-12">
             {/* ヘッダーセクション */}
             <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accentRed via-accentBlue to-accentGreen bg-clip-text text-transparent">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white bg-gradient-to-r from-accentRed via-accentBlue to-accentGreen bg-clip-text text-transparent">
                     プライバシーポリシー
                 </h1>
                 <p className="text-lg text-gray-300">
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
 
             {/* お問い合わせ */}
             <div className="bg-gradient-to-br from-accentBlue/10 to-accentRed/10 border border-accentBlue/30 rounded-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold mb-4">お問い合わせ</h2>
+                <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">お問い合わせ</h2>
                 <p className="text-gray-300 leading-relaxed">
                     本ポリシーに関するお問い合わせは、当サークルの公式SNSアカウントまたはDiscordサーバーの運営までご連絡ください。
                 </p>

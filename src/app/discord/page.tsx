@@ -3,7 +3,7 @@ export default function DiscordPage() {
         <div className="max-w-4xl mx-auto px-6 py-12">
             {/* ヘッダーセクション */}
             <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-accentRed via-accentBlue to-accentGreen bg-clip-text text-transparent">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white bg-gradient-to-r from-accentRed via-accentBlue to-accentGreen bg-clip-text text-transparent">
                     System D.B.R. Community
                 </h1>
                 <p className="text-lg text-gray-300">
@@ -17,7 +17,7 @@ export default function DiscordPage() {
 
             {/* 招待リンクセクション */}
             <div className="bg-gradient-to-br from-accentBlue/10 to-accentRed/10 border border-accentBlue/30 rounded-lg p-8 mb-8 text-center">
-                <h2 className="text-2xl font-bold mb-4">サーバーに参加する</h2>
+                <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">サーバーに参加する</h2>
                 <p className="text-gray-300 mb-6">
                     下のボタンからDiscordサーバーに参加できます
                 </p>

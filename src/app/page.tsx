@@ -7,23 +7,79 @@ import Link from "next/link";
 export default async function HomePage() {
     const [work, events, links] = await Promise.all([getLatestWork(), listEvents(), listLinks()]);
     const upcoming = events?.[0];
-    return (<div><Hero work={work}/>
-        <section className="container py-12"><h2 className="text-xl font-bold mb-4">サークルの紹介</h2><p
-            className="text-white/80">System D.B.R. は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。ダーク基調に赤・青・緑のグロー、Dual
-            Bladesモチーフを軸に展開します。</p></section>
-        <section className="container py-12"><h2 className="text-xl font-bold mb-4">主催プロフィール（要約）</h2><p
-            className="text-white/80">Souken521:作編曲／サウンドデザイン／3D & Motion。詳しくは <Link href="/about"
-                                                                                                   className="underline">About</Link> へ。
-        </p></section>
-        <section className="container py-12"><h2 className="text-xl font-bold mb-4">イベント出展（直近）</h2>{upcoming ?
-            <EventCard event={upcoming}/> : <div className="text-white/60">現在予定はありません。</div>}
-            <div className="mt-3"><Link className="underline" href="/events">すべてのイベントを見る</Link></div>
-        </section>
-        <section className="container py-12">
-            <h2 className="text-xl font-bold mb-4">Discord 参加案内</h2>
-            <p className="text-white/80">主催主導の交流サーバーを用意しています。フォーム送信後、運営が内容を確認し、メールで招待リンクをお送りします。参加をご希望の方は <Link href="/discord" className="underline">参加希望フォーム</Link> へ。</p>
-        </section>
-        <section className="container py-12"><h2 className="text-xl font-bold mb-4">各種サービス</h2><SocialLinks
-            items={links}/></section>
-    </div>)
+    return (
+        <div>
+            <Hero work={work}/>
+
+            <div className="max-w-4xl mx-auto px-6 py-12 space-y-8">
+                {/* サークルの紹介 */}
+                <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+                    <h2 className="text-2xl font-bold mb-4 text-accentBlue">サークルの紹介</h2>
+                    <p className="text-gray-300 leading-relaxed">
+                        System D.B.R. は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。
+                        ダーク基調に赤・青・緑のグロー、Dual Bladesモチーフを軸に展開します。
+                    </p>
+                </section>
+
+                {/* 主催プロフィール */}
+                <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+                    <h2 className="text-2xl font-bold mb-4 text-accentGreen">主催プロフィール</h2>
+                    <p className="text-gray-300 leading-relaxed">
+                        Souken521: 作編曲／サウンドデザイン／3D & Motion
+                    </p>
+                    <div className="mt-4">
+                        <Link href="/about" className="text-accentBlue hover:text-accentBlue/80 underline">
+                            詳しくはAboutページへ →
+                        </Link>
+                    </div>
+                </section>
+
+                {/* イベント出展 */}
+                <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+                    <h2 className="text-2xl font-bold mb-4 text-accentRed">イベント出展（直近）</h2>
+                    {upcoming ? (
+                        <EventCard event={upcoming}/>
+                    ) : (
+                        <div className="text-gray-400">現在予定はありません。</div>
+                    )}
+                    <div className="mt-4">
+                        <Link href="/events" className="text-accentBlue hover:text-accentBlue/80 underline">
+                            すべてのイベントを見る →
+                        </Link>
+                    </div>
+                </section>
+
+                {/* Discord 参加案内 */}
+                <section className="bg-gradient-to-br from-accentBlue/10 to-accentRed/10 border border-accentBlue/30 rounded-lg p-8">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Discord コミュニティ</h2>
+                    <div className="space-y-3 text-gray-300">
+                        <p className="leading-relaxed">
+                            System D.B.R. の公式Discordサーバーでは、最新情報の共有やメンバー同士の交流を行っています。
+                            国籍・性別・年齢を問わず、さまざまな方が安心して参加できるよう運営しています。
+                        </p>
+                        <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
+                            <li>新作リリース情報のいち早い共有</li>
+                            <li>即売会・イベント出展の最新情報</li>
+                            <li>制作の裏話やWIP（作業中）の共有</li>
+                            <li>音楽・クリエイティブに関する雑談</li>
+                        </ul>
+                        <div className="pt-2">
+                            <Link
+                                href="/discord"
+                                className="inline-flex items-center gap-2 text-accentBlue hover:text-accentBlue/80 font-semibold underline"
+                            >
+                                Discordページで詳細を見る →
+                            </Link>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 各種サービス */}
+                <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+                    <h2 className="text-2xl font-bold mb-6 text-accentGreen">各種サービス</h2>
+                    <SocialLinks items={links}/>
+                </section>
+            </div>
+        </div>
+    );
 }
