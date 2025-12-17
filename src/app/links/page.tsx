@@ -7,11 +7,11 @@ export default async function LinksPage() {
         <div className="max-w-4xl mx-auto px-6 py-12">
             {/* ヘッダーセクション */}
             <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white bg-gradient-to-r from-accentRed via-accentBlue to-accentGreen bg-clip-text text-transparent">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                     Links
                 </h1>
                 <p className="text-lg text-gray-300">
-                    System D.B.R. の各種SNS・配信プラットフォーム
+                    System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> の各種SNS・配信プラットフォーム
                 </p>
             </div>
 

@@ -3,11 +3,11 @@ export default function DiscordPage() {
         <div className="max-w-4xl mx-auto px-6 py-12">
             {/* ヘッダーセクション */}
             <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white bg-gradient-to-r from-accentRed via-accentBlue to-accentGreen bg-clip-text text-transparent">
-                    System D.B.R. Community
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                    System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> Community
                 </h1>
                 <p className="text-lg text-gray-300">
-                    ようこそ、System D.B.R. の公式Discordサーバーへ
+                    ようこそ、System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> の公式Discordサーバーへ
                 </p>
                 <p className="text-sm text-gray-400 mt-2">
                     このサーバーは現状「日本語メイン」のサーバーですが、<br />

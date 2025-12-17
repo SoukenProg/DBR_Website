@@ -43,16 +43,16 @@ export default async function HomePage() {
                 </section>
 
                 {/* サークルの紹介 */}
-                <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+                <section className="bg-accentBlue/10 border border-accentBlue/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentBlue">サークルの紹介</h2>
                     <p className="text-gray-300 leading-relaxed">
-                        System D.B.R. は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。
+                        System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。
                         ダーク基調に赤・青・緑のグロー、Dual Bladesモチーフを軸に展開します。
                     </p>
                 </section>
 
                 {/* 主催プロフィール */}
-                <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+                <section className="bg-accentGreen/10 border border-accentGreen/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentGreen">主催プロフィール</h2>
                     <p className="text-gray-300 leading-relaxed">
                         Souken521: 作編曲／サウンドデザイン／3D & Motion
@@ -65,7 +65,7 @@ export default async function HomePage() {
                 </section>
 
                 {/* イベント出展 */}
-                <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
+                <section className="bg-accentRed/10 border border-accentRed/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentRed">イベント出展（直近）</h2>
                     {upcoming ? (
                         <EventCard event={upcoming}/>
@@ -84,7 +84,7 @@ export default async function HomePage() {
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Discord コミュニティ</h2>
                     <div className="space-y-3 text-gray-300">
                         <p className="leading-relaxed">
-                            System D.B.R. の公式Discordサーバーでは、最新情報の共有やメンバー同士の交流を行っています。
+                            System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> の公式Discordサーバーでは、最新情報の共有やメンバー同士の交流を行っています。
                             国籍・性別・年齢を問わず、さまざまな方が安心して参加できるよう運営しています。
                         </p>
                         <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
@@ -105,8 +105,8 @@ export default async function HomePage() {
                 </section>
 
                 {/* 各種サービス */}
-                <section className="bg-gray-900 border border-gray-800 rounded-lg p-8">
-                    <h2 className="text-2xl font-bold mb-6 text-accentGreen">各種サービス</h2>
+                <section className="bg-accentBlue/10 border border-accentBlue/30 rounded-lg p-8">
+                    <h2 className="text-2xl font-bold mb-6 text-accentBlue">各種サービス</h2>
                     <SocialLinks items={links}/>
                 </section>
             </div>

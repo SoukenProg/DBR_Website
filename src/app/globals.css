@@ -2,8 +2,14 @@
 
 @reference "tailwindcss";
 
+@theme {
+    --color-accentRed: rgb(255 51 51);
+    --color-accentBlue: rgb(51 170 255);
+    --color-accentGreen: rgb(51 255 51);
+}
+
 :root {
-    color-scheme: dark
+    color-scheme: dark;
 }
 
 html, body {

@@ -3,8 +3,8 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-6 py-12">
             {/* ヘッダーセクション */}
             <div className="text-center mb-12">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white bg-gradient-to-r from-accentRed via-accentBlue to-accentGreen bg-clip-text text-transparent">
-                    About System D.B.R.
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                    About System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span>
                 </h1>
                 <p className="text-lg text-gray-300">
                     音楽をメインとしたSouken521主催のサークル
@@ -15,7 +15,7 @@ export default function AboutPage() {
             <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-accentBlue">サークル概要</h2>
                 <p className="text-gray-300 leading-relaxed">
-                    「System D.B.R.」は、リズムゲームに適したダンスミュージック、ビジュアルデザイン、3D/モーショングラフィックスを制作しています。
+                    「System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span>」は、リズムゲームに適したダンスミュージック、ビジュアルデザイン、3D/モーショングラフィックスを制作しています。
                     Dual Blades（二刀流）をテーマに、サイバーパンクとグロー演出を融合させた独自の世界観を表現しています。
                 </p>
             </div>
