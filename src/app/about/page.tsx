@@ -15,7 +15,7 @@ export default function AboutPage() {
             <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-accentBlue">サークル概要</h2>
                 <p className="text-gray-300 leading-relaxed">
-                    「System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span>」は、リズムゲームに適したダンスミュージック、ビジュアルデザイン、3D/モーショングラフィックスを制作しています。
+                    「System D.B.R.」は、リズムゲームに適したダンスミュージック、ビジュアルデザイン、3D/モーショングラフィックスを制作しています。
                     Dual Blades（二刀流）をテーマに、サイバーパンクとグロー演出を融合させた独自の世界観を表現しています。
                 </p>
             </div>
@@ -33,7 +33,7 @@ export default function AboutPage() {
                     <div className="bg-gray-800/50 rounded-lg p-4">
                         <h3 className="font-semibold text-accentBlue mb-2">使用ツール</h3>
                         <p className="text-sm">
-                            Cubase / Studio One / FL　Studio / Blender / After Effects / Illustrator ほか
+                            Cubase / Studio One / FL Studio / Blender / After Effects / Illustrator ほか
                         </p>
                     </div>
                     <div className="bg-gray-800/50 rounded-lg p-4">
