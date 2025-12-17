@@ -46,7 +46,7 @@ export default async function HomePage() {
                 <section className="bg-accentBlue/10 border border-accentBlue/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentBlue">サークルの紹介</h2>
                     <p className="text-gray-300 leading-relaxed">
-                        System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。
+                        System D.B.R. は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。
                         ダーク基調に赤・青・緑のグロー、Dual Bladesモチーフを軸に展開します。
                     </p>
                 </section>
@@ -84,7 +84,7 @@ export default async function HomePage() {
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Discord コミュニティ</h2>
                     <div className="space-y-3 text-gray-300">
                         <p className="leading-relaxed">
-                            System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> の公式Discordサーバーでは、最新情報の共有やメンバー同士の交流を行っています。
+                            System D.B.R. の公式Discordサーバーでは、最新情報の共有やメンバー同士の交流を行っています。
                             国籍・性別・年齢を問わず、さまざまな方が安心して参加できるよう運営しています。
                         </p>
                         <ul className="list-disc list-inside space-y-1 ml-4 text-sm">
