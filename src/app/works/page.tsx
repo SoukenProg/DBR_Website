@@ -1,5 +1,6 @@
 import {listWorks} from "@/lib/cms";
 import {WorkCard} from "@/components/WorkCard";
+import {ProjectFilter} from "@/components/ProjectFilter";
 
 export default async function WorksPage() {
     const works = await listWorks();
@@ -16,9 +17,9 @@ export default async function WorksPage() {
             </div>
 
             {/* 作品一覧 */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {works.map(w => (<WorkCard key={w.slug} work={w}/>))}
-            </div>
+            <ProjectFilter items={works}>
+                {works.map(work => <WorkCard key={work.slug} work={work}/>)}
+            </ProjectFilter>
         </div>
     );
 }

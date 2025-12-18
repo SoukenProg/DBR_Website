@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export function WorkCard({work}: {
-    work: { title: string; slug: string; jacket?: string; releaseDate?: string; tags?: string[] }
+    work: { title: string; slug: string; jacket?: string; releaseDate?: string; tags?: string[]; project?: string }
 }) {
     return (
         <Link
@@ -14,7 +14,14 @@ export function WorkCard({work}: {
                 <div className="aspect-square bg-gradient-to-br from-accentRed/10 to-accentBlue/10"/>
             )}
             <div className="p-4">
-                <div className="font-semibold group-hover:text-accentBlue transition-colors">{work.title}</div>
+                <div className="flex items-center gap-2">
+                    <div className="font-semibold group-hover:text-accentBlue transition-colors">{work.title}</div>
+                    {work.project && (
+                        <span className="text-[10px] px-2 py-0.5 rounded border bg-gray-800/80 border-gray-600 text-gray-300">
+                            {work.project}
+                        </span>
+                    )}
+                </div>
                 <div className="text-xs text-gray-400 mt-1">{work.releaseDate ?? ""}</div>
                 {work?.tags?.length ? (
                     <div className="mt-3 flex flex-wrap gap-1">

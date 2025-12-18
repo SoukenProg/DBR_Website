@@ -1,5 +1,6 @@
 import {listEvents} from "@/lib/cms";
 import {EventCard} from "@/components/EventCard";
+import {ProjectFilter} from "@/components/ProjectFilter";
 
 export default async function EventsPage() {
     const events = await listEvents();
@@ -16,9 +17,13 @@ export default async function EventsPage() {
             </div>
 
             {/* イベント一覧 */}
-            <div className="grid md:grid-cols-2 gap-4">
-                {events.map(e => (<EventCard key={e.slug} event={e}/>))}
-            </div>
+            <ProjectFilter
+                items={events}
+                itemLabel="イベント"
+                gridCols="md:grid-cols-2"
+            >
+                {events.map(event => <EventCard key={event.slug} event={event}/>)}
+            </ProjectFilter>
         </div>
     );
 }

@@ -7,6 +7,7 @@ export type Work = {
     description?: string;
     tags?: string[];
     platforms?: Platform[];
+    project?: string; // "System D.B.R." or "Souken521"
 };
 
 export type EventLineupItem = {
@@ -29,6 +30,7 @@ export type Event = {
     mapUrl?: string;
     notes?: string;
     lineup?: EventLineupItem[];
+    project?: string; // "System D.B.R." or "Souken521"
 };
 
 const MOCK = {
@@ -41,7 +43,18 @@ const MOCK = {
             platforms: [
                 {label: "YouTube", url: "https://youtu.be/xxxxxxxx", iconKey: "youtube"},
                 {label: "BOOTH", url: "https://booth.pm/ja/items/xxxxxxxx", iconKey: "booth"}
-            ]
+            ],
+            project: "System D.B.R."
+        },
+        {
+            title: "Personal Track",
+            slug: "personal-track",
+            releaseDate: "2025-07-10",
+            tags: ["ambient", "experimental"],
+            platforms: [
+                {label: "SoundCloud", url: "https://soundcloud.com/track", iconKey: "soundcloud"}
+            ],
+            project: "Souken521"
         }
     ] as Work[],
     events: [
@@ -59,7 +72,8 @@ const MOCK = {
                     boothUrl: "https://booth.pm/ja/items/xxxxxxxx",
                     order: 1
                 }
-            ]
+            ],
+            project: "System D.B.R."
         }
     ] as Event[],
     links: [
