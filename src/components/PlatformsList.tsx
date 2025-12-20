@@ -1,4 +1,4 @@
-type Platform = { label: string; url: string; iconKey?: string };
+type Platform = { label: string; url: string; iconKey?: string | string[] };
 const ICONS: Record<string, string> = {
     spotify: "🎵",
     applemusic: "🍎",
@@ -6,13 +6,19 @@ const ICONS: Record<string, string> = {
     bandcamp: "🏕️",
     soundcloud: "☁️",
     youtube: "▶️",
+    niconico: "😊",
     x: "𝕏",
     link: "🔗"
 };
 
-function iconFor(key?: string) {
+function iconFor(key?: string | string[]) {
     if (!key) return ICONS.link;
-    return ICONS[key] ?? ICONS.link
+    // 配列の場合は最初の要素を使用
+    const iconKey = Array.isArray(key) ? key[0] : key;
+    if (!iconKey) return ICONS.link;
+    // 小文字に変換してマッチング
+    const normalizedKey = iconKey.toLowerCase();
+    return ICONS[normalizedKey] ?? ICONS.link;
 }
 
 export function PlatformsList({items}: { items?: Platform[] }) {

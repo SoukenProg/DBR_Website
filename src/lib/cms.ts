@@ -1,13 +1,32 @@
-type Platform = { label: string; url: string; iconKey?: string };
+type Platform = { label: string; url: string; iconKey?: string | string[] };
+
+// microCMSの画像フィールド
+export type ImageField = {
+    url: string;
+    height?: number;
+    width?: number;
+};
+
+// microCMSのセレクトフィールドはオブジェクト形式または配列形式で返ってくる
+export type ProjectField = {
+    id: string;
+    name: string;
+    slug?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    publishedAt?: string;
+    revisedAt?: string;
+};
+
 export type Work = {
     title: string;
     slug: string;
-    jacket?: string;
+    jacket?: ImageField | string; // オブジェクト形式または文字列形式
     releaseDate?: string;
     description?: string;
-    tags?: string[];
+    tags?: string[] | any[]; // 文字列配列またはオブジェクト配列
     platforms?: Platform[];
-    project?: string; // "System D.B.R." or "Souken521"
+    project?: ProjectField | ProjectField[]; // 配列形式もサポート
 };
 
 export type EventLineupItem = {
@@ -30,7 +49,7 @@ export type Event = {
     mapUrl?: string;
     notes?: string;
     lineup?: EventLineupItem[];
-    project?: string; // "System D.B.R." or "Souken521"
+    project?: ProjectField | ProjectField[]; // 配列形式もサポート
 };
 
 const MOCK = {
@@ -44,7 +63,7 @@ const MOCK = {
                 {label: "YouTube", url: "https://youtu.be/xxxxxxxx", iconKey: "youtube"},
                 {label: "BOOTH", url: "https://booth.pm/ja/items/xxxxxxxx", iconKey: "booth"}
             ],
-            project: "System D.B.R."
+            project: {id: "system-dbr", name: "System D.B.R.", slug: "system-dbr"}
         },
         {
             title: "Personal Track",
@@ -54,7 +73,7 @@ const MOCK = {
             platforms: [
                 {label: "SoundCloud", url: "https://soundcloud.com/track", iconKey: "soundcloud"}
             ],
-            project: "Souken521"
+            project: {id: "souken521", name: "Souken521", slug: "souken521"}
         }
     ] as Work[],
     events: [
@@ -73,7 +92,7 @@ const MOCK = {
                     order: 1
                 }
             ],
-            project: "System D.B.R."
+            project: {id: "system-dbr", name: "System D.B.R.", slug: "system-dbr"}
         }
     ] as Event[],
     links: [
@@ -111,10 +130,11 @@ export async function listWorks(): Promise<Work[]> {
 
 export async function getWork(slug: string): Promise<Work | undefined> {
     if (!hasMicroCMSEnv()) return MOCK.works.find(w => w.slug === slug);
-    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work/${slug}`;
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?filters=slug[equals]${slug}&limit=1`;
     const res = await fetch(endpoint, {headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!}});
     if (!res.ok) return undefined;
-    return await res.json();
+    const json = await res.json();
+    return json?.contents?.[0];
 }
 
 export async function listEvents(): Promise<Event[]> {
@@ -130,10 +150,11 @@ export async function listEvents(): Promise<Event[]> {
 
 export async function getEvent(slug: string): Promise<Event | undefined> {
     if (!hasMicroCMSEnv()) return MOCK.events.find(e => e.slug === slug);
-    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/event/${slug}?depth=2`;
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/event?filters=slug[equals]${slug}&depth=2&limit=1`;
     const res = await fetch(endpoint, {headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!}});
     if (!res.ok) return undefined;
-    return await res.json();
+    const json = await res.json();
+    return json?.contents?.[0];
 }
 
 export async function listLinks(): Promise<{ label: string; url: string }[]> {

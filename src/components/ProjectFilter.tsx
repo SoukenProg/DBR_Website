@@ -1,10 +1,28 @@
 "use client";
 
 import {useState, ReactNode} from "react";
+import type {ProjectField} from "@/lib/cms";
 
 export type FilterableItem = {
-    project?: string;
+    project?: ProjectField | ProjectField[] | string;
 };
+
+// projectフィールドから名前を取得するヘルパー関数（配列形式もサポート）
+function getProjectName(project?: ProjectField | ProjectField[] | string): string | undefined {
+    if (!project) return undefined;
+    if (typeof project === 'string') return project;
+
+    // 配列の場合は最初の要素を取得
+    if (Array.isArray(project)) {
+        const firstProject = project[0];
+        if (!firstProject) return undefined;
+        if (typeof firstProject === 'string') return firstProject;
+        return firstProject.name;
+    }
+
+    // オブジェクトの場合
+    return project.name;
+}
 
 export function ProjectFilter({
     items,
@@ -19,13 +37,13 @@ export function ProjectFilter({
 }) {
     const [selectedProject, setSelectedProject] = useState<string | "all">("all");
 
-    // プロジェクトのリストを取得
-    const projects = Array.from(new Set(items.map(item => item.project).filter(Boolean))) as string[];
+    // プロジェクトのリストを取得（オブジェクトの場合はnameを取得）
+    const projects = Array.from(new Set(items.map(item => getProjectName(item.project)).filter(Boolean))) as string[];
 
     // フィルタリング
     const filteredIndices = selectedProject === "all"
         ? items.map((_, i) => i)
-        : items.map((item, i) => item.project === selectedProject ? i : -1).filter(i => i !== -1);
+        : items.map((item, i) => getProjectName(item.project) === selectedProject ? i : -1).filter(i => i !== -1);
 
     return (
         <div>
