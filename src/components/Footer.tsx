@@ -5,7 +5,7 @@ export function Footer() {
         <footer className="border-t border-white/10 py-10 mt-16">
             <div className="container flex flex-col md:flex-row items-center justify-between gap-4">
                 <p className="text-sm">
-                    © {new Date().getFullYear()} System D.B.R.
+                    © {new Date().getFullYear()} System D.B.R. / Souken521
                 </p>
                 <div className="flex gap-4 text-sm">
                     <Link href="/privacy" className="hover:text-accentBlue transition-colors">プライバシー</Link>

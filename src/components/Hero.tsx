@@ -11,7 +11,7 @@ export function Hero({work}: { work?: { title: string; slug: string; jacket?: Im
         <div className="container text-center"><h1
             className="text-4xl md:text-6xl font-extrabold tracking-widest drop-shadow">System <span
             className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span
-            className="text-accentRed">R.</span></h1>
+            className="text-accentRed">R.</span> / Souken521</h1>
             <p className="mt-4 text-white/70">Dual Blades × Rhythm — 音と光のサークル</p>{work && (<div
             className="mt-10 inline-flex flex-col items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 shadow-glow">{jacketUrl ? (
             <img src={jacketUrl} alt={work.title} className="w-48 h-48 object-cover rounded"/>) : null}
