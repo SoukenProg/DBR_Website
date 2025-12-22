@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type {ProjectField, ImageField} from "@/lib/cms";
+import {formatDate} from "@/lib/formatDate";
 
 export function WorkCard({work}: {
     work: { title: string; slug: string; jacket?: ImageField | string; releaseDate?: string; tags?: any[]; project?: ProjectField | ProjectField[] | string }
@@ -40,7 +41,7 @@ export function WorkCard({work}: {
                         </span>
                     )}
                 </div>
-                <div className="text-xs text-gray-400 mt-1">{work.releaseDate ?? ""}</div>
+                <div className="text-xs text-gray-400 mt-1">{formatDate(work.releaseDate)}</div>
                 {work?.tags?.length ? (
                     <div className="mt-3 flex flex-wrap gap-1">
                         {work.tags.slice(0, 3).map((t, i) => {

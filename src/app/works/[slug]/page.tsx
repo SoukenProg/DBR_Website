@@ -2,6 +2,7 @@ import {getWork} from "@/lib/cms";
 import {notFound} from "next/navigation";
 import {PlatformsList} from "@/components/PlatformsList";
 import type {ProjectField} from "@/lib/cms";
+import {formatDate} from "@/lib/formatDate";
 
 // projectから名前を取得（配列、オブジェクト、文字列に対応）
 function getProjectName(project?: ProjectField | ProjectField[] | string): string | undefined {
@@ -31,7 +32,7 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
             <div className="mb-8">
                 <h1 className="text-3xl md:text-4xl font-bold mb-3">{work.title}</h1>
                 <div className="flex items-center gap-3 text-sm text-gray-400">
-                    {work.releaseDate && <span>{work.releaseDate}</span>}
+                    {work.releaseDate && <span>{formatDate(work.releaseDate)}</span>}
                     {projectName && (
                         <span className="px-2 py-0.5 rounded border bg-gray-800/80 border-gray-600 text-gray-300">
                             {projectName}
