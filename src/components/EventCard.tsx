@@ -24,7 +24,11 @@ export function EventCard({event}: { event: { title: string; slug: string; date?
             <div className="flex items-center gap-2">
                 <div className="font-semibold text-white group-hover:text-accentRed transition-colors">{event.title}</div>
                 {projectName && (
-                    <span className="text-[10px] px-2 py-0.5 rounded border bg-accentRed/30 border-accentRed/50 text-white">
+                    <span className={`text-[10px] px-2 py-0.5 rounded border ${
+                        projectName === "Souken521"
+                            ? "bg-accentPurple/30 border-accentPurple/50 text-accentPurple"
+                            : "bg-accentRed/30 border-accentRed/50 text-white"
+                    }`}>
                         {projectName}
                     </span>
                 )}

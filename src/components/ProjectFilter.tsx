@@ -60,19 +60,25 @@ export function ProjectFilter({
                     >
                         すべて
                     </button>
-                    {projects.map(project => (
-                        <button
-                            key={project}
-                            onClick={() => setSelectedProject(project)}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
-                                selectedProject === project
-                                    ? "bg-accentBlue/20 border-2 border-accentBlue text-accentBlue"
-                                    : "bg-gray-800/50 border-2 border-gray-700 text-gray-300 hover:border-gray-600"
-                            }`}
-                        >
-                            {project}
-                        </button>
-                    ))}
+                    {projects.map(project => {
+                        const activeColor = project === "Souken521"
+                            ? "bg-accentPurple/20 border-2 border-accentPurple text-accentPurple"
+                            : "bg-accentBlue/20 border-2 border-accentBlue text-accentBlue";
+
+                        return (
+                            <button
+                                key={project}
+                                onClick={() => setSelectedProject(project)}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                                    selectedProject === project
+                                        ? activeColor
+                                        : "bg-gray-800/50 border-2 border-gray-700 text-gray-300 hover:border-gray-600"
+                                }`}
+                            >
+                                {project}
+                            </button>
+                        );
+                    })}
                 </div>
             )}
 

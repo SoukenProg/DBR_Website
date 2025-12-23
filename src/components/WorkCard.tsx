@@ -36,7 +36,11 @@ export function WorkCard({work}: {
                 <div className="flex items-center gap-2">
                     <div className="font-semibold group-hover:text-accentBlue transition-colors">{work.title}</div>
                     {projectName && (
-                        <span className="text-[10px] px-2 py-0.5 rounded border bg-gray-800/80 border-gray-600 text-gray-300">
+                        <span className={`text-[10px] px-2 py-0.5 rounded border ${
+                            projectName === "Souken521"
+                                ? "bg-accentPurple/20 border-accentPurple/50 text-accentPurple"
+                                : "bg-accentBlue/20 border-accentBlue/50 text-accentBlue"
+                        }`}>
                             {projectName}
                         </span>
                     )}

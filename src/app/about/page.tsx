@@ -12,7 +12,7 @@ export default function AboutPage() {
             </div>
 
             {/* System D.B.R. セクション */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
+            <div className="bg-gradient-to-br from-accentRed/10 via-accentGreen/10 to-accentBlue/10 border border-accentBlue/30 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4">
                     System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span>
                 </h2>
@@ -37,28 +37,21 @@ export default function AboutPage() {
             </div>
 
             {/* Souken521 セクション */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold mb-4 text-accentGreen">Souken521</h2>
+            <div className="bg-accentPurple/10 border border-accentPurple/30 rounded-lg p-8 mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-accentPurple">Souken521</h2>
                 <div className="text-gray-300 space-y-4">
                     <p className="leading-relaxed">
                         個人名義での楽曲制作活動。System D.B.R.のテーマにとらわれず、様々なジャンルの楽曲制作に挑戦しています。
                         実験的な楽曲制作や、より幅広い音楽性の探求を行っています。
                     </p>
                     <div className="bg-gray-800/50 rounded-lg p-4">
-                        <h3 className="font-semibold text-accentGreen mb-2">活動スタイル</h3>
+                        <h3 className="font-semibold text-accentPurple mb-2">活動スタイル</h3>
                         <p className="text-sm">
                             ジャンルにとらわれない自由な楽曲制作 / 実験的アプローチ / コラボレーション
                         </p>
                     </div>
-                </div>
-            </div>
-
-            {/* 主催プロフィール */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">プロフィール</h2>
-                <div className="space-y-4 text-gray-300">
                     <div className="bg-gray-800/50 rounded-lg p-4">
-                        <h3 className="font-semibold text-accentBlue mb-2">使用ツール</h3>
+                        <h3 className="font-semibold text-accentPurple mb-2">使用ツール</h3>
                         <p className="text-sm">
                             Cubase / Studio One / FL Studio / Blender / After Effects / Illustrator ほか
                         </p>

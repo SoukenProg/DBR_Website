@@ -22,7 +22,7 @@ export default function DiscordPage() {
                     下のボタンからDiscordサーバーに参加できます
                 </p>
                 <a
-                    href="https://discord.gg/YOUR_INVITE_CODE"
+                    href="https://discord.gg/qTbkXc5R4G"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-8 py-4 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-lg transition-colors shadow-lg hover:shadow-xl"

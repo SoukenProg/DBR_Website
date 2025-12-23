@@ -34,7 +34,11 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
                 <div className="flex items-center gap-3 text-sm text-gray-400">
                     {work.releaseDate && <span>{formatDate(work.releaseDate)}</span>}
                     {projectName && (
-                        <span className="px-2 py-0.5 rounded border bg-gray-800/80 border-gray-600 text-gray-300">
+                        <span className={`px-2 py-0.5 rounded border ${
+                            projectName === "Souken521"
+                                ? "bg-accentPurple/20 border-accentPurple/50 text-accentPurple"
+                                : "bg-accentBlue/20 border-accentBlue/50 text-accentBlue"
+                        }`}>
                             {projectName}
                         </span>
                     )}
@@ -55,9 +59,10 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
             {/* 説明文 */}
             {work.description && (
                 <div className="mb-8">
-                    <p className="text-white/80 whitespace-pre-wrap leading-relaxed">
-                        {work.description}
-                    </p>
+                    <div
+                        className="text-white/80 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
+                        dangerouslySetInnerHTML={{__html: work.description}}
+                    />
                 </div>
             )}
 

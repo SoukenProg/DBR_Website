@@ -8,7 +8,14 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
     return (<div className="container py-12"><h1 className="text-2xl font-bold mb-4">{ev.title}</h1>
         <div
             className="text-white/80 mb-4">{ev.date} {ev.place ? `@ ${ev.place}` : ""} {ev.space ? `（スペース: ${ev.space}）` : ""}</div>
-        <p className="text-white/80">{ev.notes ?? "イベント詳細（頒布物・決済方法など）"}</p>{ev.mapUrl ?
+        {ev.notes ? (
+            <div
+                className="text-white/80 mb-4 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
+                dangerouslySetInnerHTML={{__html: ev.notes}}
+            />
+        ) : (
+            <p className="text-white/80">イベント詳細（頒布物・決済方法など）</p>
+        )}{ev.mapUrl ?
             <a className="underline" href={ev.mapUrl} target="_blank"
                rel="noreferrer">地図を見る</a> : null}{ev.lineup?.length ? (
             <section className="mt-10"><h2 className="text-xl font-semibold mb-3">頒布ラインナップ</h2>
@@ -35,7 +42,10 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                    rel="noreferrer">BOOTH</a>}{item.sampleUrl &&
                                 <a className="underline" href={item.sampleUrl} target="_blank"
                                    rel="noreferrer">試聴</a>}</div>)}{item.note &&
-                            <div className="text-white/70 text-sm mt-1">{item.note}</div>}</div>
+                            <div
+                                className="text-white/70 text-sm mt-1 [&_p]:mb-2 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
+                                dangerouslySetInnerHTML={{__html: item.note}}
+                            />}</div>
                     </li>)
                 })}</ul>
             </section>) : null}</div>)
