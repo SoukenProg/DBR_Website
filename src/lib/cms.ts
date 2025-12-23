@@ -119,7 +119,7 @@ export async function getLatestWork(): Promise<Work | undefined> {
 
 export async function listWorks(): Promise<Work[]> {
     if (!hasMicroCMSEnv()) return MOCK.works;
-    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?orders=-releaseDate`;
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?limit=100&orders=-releaseDate`;
     const res = await fetch(endpoint, {
         headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
         next: {revalidate: 300}
@@ -139,7 +139,7 @@ export async function getWork(slug: string): Promise<Work | undefined> {
 
 export async function listEvents(): Promise<Event[]> {
     if (!hasMicroCMSEnv()) return MOCK.events;
-    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/event?orders=date`;
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/event?limit=100&orders=date`;
     const res = await fetch(endpoint, {
         headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
         next: {revalidate: 300}
@@ -159,7 +159,7 @@ export async function getEvent(slug: string): Promise<Event | undefined> {
 
 export async function listLinks(): Promise<{ label: string; url: string }[]> {
     if (!hasMicroCMSEnv()) return MOCK.links;
-    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/link`;
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/link?limit=100`;
     const res = await fetch(endpoint, {
         headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
         next: {revalidate: 300}
