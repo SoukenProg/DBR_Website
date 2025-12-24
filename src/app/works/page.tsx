@@ -11,7 +11,7 @@ export default async function WorksPage() {
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                     Works
                 </h1>
-                <p className="text-lg text-gray-300">
+                <p className="text-lg text-gray-700 dark:text-gray-300">
                     制作物まとめ
                 </p>
             </div>

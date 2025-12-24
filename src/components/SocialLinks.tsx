@@ -19,10 +19,10 @@ export function SocialLinks({items}: { items: LinkItem[] }) {
                         rel="noreferrer"
                         className={`group relative px-6 py-4 rounded-lg border bg-gradient-to-br ${colorClass} transition-all duration-300 hover:scale-105 hover:shadow-lg`}
                     >
-                        <span className="text-white font-semibold group-hover:text-white/90 transition-colors">
+                        <span className="text-gray-900 dark:text-white font-semibold group-hover:opacity-90 transition-colors">
                             {link.label}
                         </span>
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 group-hover:text-white/80 group-hover:translate-x-1 transition-all">
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-600 dark:text-white/50 group-hover:text-gray-900 dark:group-hover:text-white/80 group-hover:translate-x-1 transition-all">
                             →
                         </span>
                     </a>

@@ -11,7 +11,7 @@ export default async function EventsPage() {
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                     Events
                 </h1>
-                <p className="text-lg text-gray-300">
+                <p className="text-lg text-gray-700 dark:text-gray-300">
                     即売会・音楽イベントへの出展情報
                 </p>
             </div>

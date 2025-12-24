@@ -14,8 +14,8 @@ export default async function HomePage() {
             <div className="max-w-4xl mx-auto px-6 py-12 space-y-8">
                 {/* 作品一覧 */}
                 <section className="bg-gradient-to-br from-accentRed/10 to-accentBlue/10 border border-accentRed/30 rounded-lg p-8">
-                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">作品一覧</h2>
-                    <div className="space-y-3 text-gray-300">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-900 dark:text-white">作品一覧</h2>
+                    <div className="space-y-3 text-gray-700 dark:text-gray-300">
                         <p className="leading-relaxed">
                             リズムゲーム向けのオリジナル楽曲を制作しています。
                             Uplifting Trance、Future Bass、Tech House、Hardstyle など、多彩なジャンルの作品をお楽しみいただけます。
@@ -23,7 +23,7 @@ export default async function HomePage() {
                         {work && (
                             <div className="bg-gray-900/50 rounded-lg p-4 mt-4">
                                 <p className="text-sm text-gray-400 mb-2">最新作</p>
-                                <p className="font-semibold text-white">{work.title}</p>
+                                <p className="font-semibold text-gray-900 dark:text-white">{work.title}</p>
                                 <div className="mt-3">
                                     <Link href={`/works/${work.slug}`} className="text-accentRed hover:text-accentRed/80 underline text-sm">
                                         作品詳細を見る →
@@ -45,7 +45,7 @@ export default async function HomePage() {
                 {/* サークルの紹介 */}
                 <section className="bg-accentBlue/10 border border-accentBlue/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentBlue">サークルの紹介</h2>
-                    <p className="text-gray-300 leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         System D.B.R. は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。
                         ダーク基調に赤・青・緑のグロー、Dual Bladesモチーフを軸に展開します。
                     </p>
@@ -54,7 +54,7 @@ export default async function HomePage() {
                 {/* 主催プロフィール */}
                 <section className="bg-accentGreen/10 border border-accentGreen/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentGreen">主催プロフィール</h2>
-                    <p className="text-gray-300 leading-relaxed">
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                         Souken521: 作編曲／サウンドデザイン／3D & Motion
                     </p>
                     <div className="mt-4">
@@ -81,8 +81,8 @@ export default async function HomePage() {
 
                 {/* Discord 参加案内 */}
                 <section className="bg-gradient-to-br from-accentBlue/10 to-accentRed/10 border border-accentBlue/30 rounded-lg p-8">
-                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Discord コミュニティ</h2>
-                    <div className="space-y-3 text-gray-300">
+                    <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-900 dark:text-white">Discord コミュニティ</h2>
+                    <div className="space-y-3 text-gray-700 dark:text-gray-300">
                         <p className="leading-relaxed">
                             System D.B.R. の公式Discordサーバーでは、最新情報の共有やメンバー同士の交流を行っています。
                             国籍・性別・年齢を問わず、さまざまな方が安心して参加できるよう運営しています。

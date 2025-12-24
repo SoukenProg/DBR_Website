@@ -13,17 +13,17 @@ export function Header() {
         { href: "/discord", label: "Discord" },
 
     ] as const satisfies ReadonlyArray<{ href: Route; label: string }>;
-    return (<header className="sticky top-0 z-50 backdrop-blur bg-black/60 border-b border-white/10">
+    return (<header className="sticky top-0 z-50 backdrop-blur bg-white/80 dark:bg-black/60 border-b border-gray-200 dark:border-white/10">
         <div className="container h-14 flex items-center justify-between">
-            <Link href="/" className="font-bold tracking-wider">
+            <Link href="/" className="font-bold tracking-wider text-gray-900 dark:text-white">
                 System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> / Souken521
             </Link>
             <nav className="hidden md:flex gap-6">{nav.map(n => (
-                <Link key={n.href} href={n.href} className="hover:text-white/80">{n.label}</Link>))}</nav>
-            <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="menu">☰</button>
+                <Link key={n.href} href={n.href} className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white/80">{n.label}</Link>))}</nav>
+            <button className="md:hidden text-gray-900 dark:text-white" onClick={() => setOpen(!open)} aria-label="menu">☰</button>
         </div>
-        {open && (<div className="md:hidden border-t border-white/10">
+        {open && (<div className="md:hidden border-t border-gray-200 dark:border-white/10">
             <div className="container py-2 flex flex-col gap-2">{nav.map(n => (
-                <Link key={n.href} href={n.href} onClick={() => setOpen(false)}>{n.label}</Link>))}</div>
+                <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300">{n.label}</Link>))}</div>
         </div>)}</header>)
 }

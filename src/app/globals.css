@@ -10,12 +10,18 @@
 }
 
 :root {
-    color-scheme: dark;
+    color-scheme: light dark;
 }
 
 html, body {
-    @apply bg-black text-neutral-200;
+    @apply bg-white text-gray-900;
     font-feature-settings: "palt"
+}
+
+@media (prefers-color-scheme: dark) {
+    html, body {
+        @apply bg-black text-neutral-200;
+    }
 }
 
 .container {

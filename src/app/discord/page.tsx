@@ -1,4 +1,6 @@
 export default function DiscordPage() {
+    const discordInviteUrl = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL || "https://jyunnbityuu-desu.com";
+
     return (
         <div className="max-w-4xl mx-auto px-6 py-12">
             {/* ヘッダーセクション */}
@@ -6,10 +8,10 @@ export default function DiscordPage() {
                 <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                     System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> Community
                 </h1>
-                <p className="text-lg text-gray-300">
+                <p className="text-lg text-gray-700 dark:text-gray-300">
                     ようこそ、System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> の公式Discordサーバーへ
                 </p>
-                <p className="text-sm text-gray-400 mt-2">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
                     このサーバーは現状「日本語メイン」のサーバーですが、<br />
                     国籍・性別・年齢を問わず、さまざまな方が安心して参加できるよう運営しています。
                 </p>
@@ -18,11 +20,11 @@ export default function DiscordPage() {
             {/* 招待リンクセクション */}
             <div className="bg-gradient-to-br from-accentBlue/10 to-accentRed/10 border border-accentBlue/30 rounded-lg p-8 mb-8 text-center">
                 <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">サーバーに参加する</h2>
-                <p className="text-gray-300 mb-6">
+                <p className="text-gray-700 dark:text-gray-300 mb-6">
                     下のボタンからDiscordサーバーに参加できます
                 </p>
                 <a
-                    href="https://discord.gg/qTbkXc5R4G"
+                    href={discordInviteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-8 py-4 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-lg transition-colors shadow-lg hover:shadow-xl"
@@ -35,13 +37,13 @@ export default function DiscordPage() {
             </div>
 
             {/* 参加手続き */}
-            <div className="bg-yellow-900/20 border border-yellow-700/50 rounded-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold mb-4 text-yellow-400">📝 参加手続き</h2>
-                <div className="space-y-3 text-gray-300">
+            <div className="bg-yellow-100 dark:bg-yellow-900/20 border border-yellow-400 dark:border-yellow-700/50 rounded-lg p-8 mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-yellow-800 dark:text-yellow-400">📝 参加手続き</h2>
+                <div className="space-y-3 text-gray-700 dark:text-gray-300">
                     <p>
                         荒らし防止のため、サーバー加入直後では閲覧可能チャンネルを大幅に制限しております。
                     </p>
-                    <p className="font-semibold text-yellow-300">
+                    <p className="font-semibold text-yellow-800 dark:text-yellow-300">
                         利用規約に同意いただける方は、専用チャンネルで自己紹介をお願いします。
                     </p>
                     <ul className="list-disc list-inside space-y-2 ml-4">
@@ -53,13 +55,13 @@ export default function DiscordPage() {
             </div>
 
             {/* 基本ルール */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold mb-4 text-accentBlue">📜 基本ルール</h2>
-                <div className="space-y-3 text-gray-300">
+            <div className="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-lg p-8 mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">📜 基本ルール</h2>
+                <div className="space-y-3 text-gray-700 dark:text-gray-300">
                     <ol className="list-decimal list-inside space-y-3 ml-2">
                         <li>
                             <strong>運営やモデレーターの指示には必ず従ってください。</strong>
-                            <p className="text-sm text-gray-400 ml-6 mt-1">
+                            <p className="text-sm text-gray-600 dark:text-gray-400 ml-6 mt-1">
                                 （トラブルや荒らし対策のため、一時的なミュート・キック等を行う場合があります）
                             </p>
                         </li>
@@ -68,13 +70,13 @@ export default function DiscordPage() {
                         </li>
                         <li>
                             <strong>NSFWコンテンツに関する発言には専用ロールがあります。</strong>
-                            <p className="text-sm text-gray-400 ml-6 mt-1">
+                            <p className="text-sm text-gray-600 dark:text-gray-400 ml-6 mt-1">
                                 専用チャンネルより取得してください。ただし、<strong className="text-red-400">極端にグロテスクな画像・動画</strong>は専用チャンネルであっても禁止とします。
                             </p>
                         </li>
                         <li>
                             <strong>気軽にメンションできるロールを用意しています。</strong>
-                            <p className="text-sm text-gray-400 ml-6 mt-1">
+                            <p className="text-sm text-gray-600 dark:text-gray-400 ml-6 mt-1">
                                 専用チャンネルより取得してください。
                             </p>
                         </li>
@@ -83,9 +85,9 @@ export default function DiscordPage() {
             </div>
 
             {/* 禁止・注意事項 */}
-            <div className="bg-red-900/20 border border-red-700/50 rounded-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold mb-4 text-red-400">🚫 禁止・注意事項</h2>
-                <div className="space-y-2 text-gray-300">
+            <div className="bg-red-100 dark:bg-red-900/20 border border-red-400 dark:border-red-700/50 rounded-lg p-8 mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-red-800 dark:text-red-400">🚫 禁止・注意事項</h2>
+                <div className="space-y-2 text-gray-700 dark:text-gray-300">
                     <ul className="list-disc list-inside space-y-2 ml-4">
                         <li>サーバー内での悪口・誹謗中傷、またはプライバシーを侵害する行為</li>
                         <li>チャット内および通話内での荒らし等の迷惑行為</li>
@@ -93,20 +95,20 @@ export default function DiscordPage() {
                         <li>淫夢・ヒカマニ関連の発言・コンテンツの添付</li>
                         <li>不必要または過度なメンションを送る行為</li>
                         <li>画像ファイル・GIF単体でのリプライ（※リアクションは歓迎です）</li>
-                        <li className="font-bold text-red-300">このサーバーにアップロードされた作品をAIモデルの学習に利用すること</li>
+                        <li className="font-bold text-red-800 dark:text-red-300">このサーバーにアップロードされた作品をAIモデルの学習に利用すること</li>
                     </ul>
                 </div>
             </div>
 
             {/* フッター */}
-            <div className="text-center text-gray-400 text-sm mt-8 p-6 bg-gray-900/50 rounded-lg border border-gray-800">
+            <div className="text-center text-gray-600 dark:text-gray-400 text-sm mt-8 p-6 bg-gray-100 dark:bg-gray-900/50 rounded-lg border border-gray-300 dark:border-gray-800">
                 <p className="mb-2">
                     利用規約は予告なく改定される場合があります。
                 </p>
                 <p>
                     📩 規約に関するお問い合わせは運営までお知らせください。
                 </p>
-                <p className="mt-4 text-gray-300">
+                <p className="mt-4 text-gray-700 dark:text-gray-300">
                     至らぬ点もありますが、皆さんが安心して創作・交流できる場を目指しています。<br />
                     どうぞよろしくお願いいたします。
                 </p>

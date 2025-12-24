@@ -35,7 +35,7 @@ docker compose up --build -d
 必須の環境変数（開発時は `.env.local` を作成）:
 - `MICROCMS_SERVICE_DOMAIN` - microCMSのサービスドメイン
 - `MICROCMS_API_KEY` - microCMSのAPIキー
-
+- `NEXT_PUBLIC_DISCORD_INVITE_URL` - Discord招待リンクURL（例: https://discord.gg/xxxxx）
 
 microCMSの認証情報がない場合、`src/lib/cms.ts` で定義されたモックデータにフォールバックします。
 
@@ -100,7 +100,9 @@ App Router（Next.js 15）でTypeScriptの型付きルートを有効化:
 ### スタイリング
 
 - Tailwind CSS 4.x（PostCSSプラグインアーキテクチャ）
-- カスタムテーマカラー: `accentRed`, `accentBlue`, `accentGreen`（RGBグロー美学）
+- カスタムテーマカラー:
+  - `accentRed`, `accentBlue`, `accentGreen`（System D.B.R.のRGBグロー美学）
+  - `accentPurple`（Souken521のブランドカラー）
 - "Dual Blades"ビジュアルモチーフ用のカスタムglowシャドウユーティリティ
 - ダークテーマベースライン（黒背景、白テキスト）
 

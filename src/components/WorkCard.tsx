@@ -25,7 +25,7 @@ export function WorkCard({work}: {
     return (
         <Link
             href={`/works/${work.slug}`}
-            className="group border border-gray-800 rounded-lg overflow-hidden hover:border-accentBlue/50 transition-all duration-300 bg-gray-900/50"
+            className="group border border-gray-300 dark:border-gray-800 rounded-lg overflow-hidden hover:border-accentBlue/50 transition-all duration-300 bg-gray-50 dark:bg-gray-900/50"
         >
             {jacketUrl ? (
                 <img src={jacketUrl} alt={work.title} className="aspect-square object-cover"/>
@@ -34,7 +34,7 @@ export function WorkCard({work}: {
             )}
             <div className="p-4">
                 <div className="flex items-center gap-2">
-                    <div className="font-semibold group-hover:text-accentBlue transition-colors">{work.title}</div>
+                    <div className="font-semibold text-gray-900 dark:text-white group-hover:text-accentBlue transition-colors">{work.title}</div>
                     {projectName && (
                         <span className={`text-[10px] px-2 py-0.5 rounded border ${
                             projectName === "Souken521"
@@ -45,7 +45,7 @@ export function WorkCard({work}: {
                         </span>
                     )}
                 </div>
-                <div className="text-xs text-gray-400 mt-1">{formatDate(work.releaseDate)}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{formatDate(work.releaseDate)}</div>
                 {work?.tags?.length ? (
                     <div className="mt-3 flex flex-wrap gap-1">
                         {work.tags.slice(0, 3).map((t, i) => {
