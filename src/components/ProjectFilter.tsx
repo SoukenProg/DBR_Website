@@ -55,7 +55,7 @@ export function ProjectFilter({
                         className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                             selectedProject === "all"
                                 ? "bg-accentBlue/20 border-2 border-accentBlue text-accentBlue"
-                                : "bg-gray-800/50 border-2 border-gray-700 text-gray-300 hover:border-gray-600"
+                                : "bg-white dark:bg-gray-800/50 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-600"
                         }`}
                     >
                         すべて
@@ -72,7 +72,7 @@ export function ProjectFilter({
                                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                                     selectedProject === project
                                         ? activeColor
-                                        : "bg-gray-800/50 border-2 border-gray-700 text-gray-300 hover:border-gray-600"
+                                        : "bg-white dark:bg-gray-800/50 border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-gray-400 dark:hover:border-gray-600"
                                 }`}
                             >
                                 {project}
@@ -83,7 +83,7 @@ export function ProjectFilter({
             )}
 
             {/* 表示件数 */}
-            <div className="text-center text-sm text-gray-400 mb-4">
+            <div className="text-center text-sm text-gray-600 dark:text-gray-400 mb-4">
                 {filteredIndices.length}件の{selectedProject === "all" ? itemLabel : `${selectedProject}の${itemLabel}`}
             </div>
 
