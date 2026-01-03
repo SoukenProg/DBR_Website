@@ -117,6 +117,22 @@ export async function getLatestWork(): Promise<Work | undefined> {
     return json?.contents?.[0];
 }
 
+export async function getLatestWorkByProject(projectName: string): Promise<Work | undefined> {
+    if (!hasMicroCMSEnv()) {
+        return MOCK.works.find(w => {
+            const project = Array.isArray(w.project) ? w.project[0] : w.project;
+            return typeof project === 'string' ? project === projectName : project?.name === projectName;
+        });
+    }
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?filters=project[contains]${projectName}&limit=1&orders=-releaseDate`;
+    const res = await fetch(endpoint, {
+        headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
+        next: {revalidate: 300}
+    });
+    const json = await res.json();
+    return json?.contents?.[0];
+}
+
 export async function listWorks(): Promise<Work[]> {
     if (!hasMicroCMSEnv()) return MOCK.works;
     const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?limit=100&orders=-releaseDate`;

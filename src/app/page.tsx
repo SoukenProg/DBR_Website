@@ -1,15 +1,20 @@
 import {Hero} from "@/components/Hero";
-import {getLatestWork, listEvents, listLinks} from "@/lib/cms";
+import {getLatestWorkByProject, listEvents, listLinks} from "@/lib/cms";
 import {EventCard} from "@/components/EventCard";
 import {SocialLinks} from "@/components/SocialLinks";
 import Link from "next/link";
 
 export default async function HomePage() {
-    const [work, events, links] = await Promise.all([getLatestWork(), listEvents(), listLinks()]);
+    const [dbrWork, soukenWork, events, links] = await Promise.all([
+        getLatestWorkByProject("System D.B.R."),
+        getLatestWorkByProject("Souken521"),
+        listEvents(),
+        listLinks()
+    ]);
     const upcoming = events?.[0];
     return (
         <div>
-            <Hero work={work}/>
+            <Hero dbrWork={dbrWork} soukenWork={soukenWork}/>
 
             <div className="max-w-4xl mx-auto px-6 py-12 space-y-8">
                 {/* 作品一覧 */}
@@ -20,17 +25,6 @@ export default async function HomePage() {
                             リズムゲーム向けのオリジナル楽曲を制作しています。
                             Uplifting Trance、Future Bass、Tech House、Hardstyle など、多彩なジャンルの作品をお楽しみいただけます。
                         </p>
-                        {work && (
-                            <div className="bg-gray-900/50 rounded-lg p-4 mt-4">
-                                <p className="text-sm text-gray-400 mb-2">最新作</p>
-                                <p className="font-semibold text-gray-900 dark:text-white">{work.title}</p>
-                                <div className="mt-3">
-                                    <Link href={`/works/${work.slug}`} className="text-accentRed hover:text-accentRed/80 underline text-sm">
-                                        作品詳細を見る →
-                                    </Link>
-                                </div>
-                            </div>
-                        )}
                         <div className="pt-2">
                             <Link
                                 href="/works"
