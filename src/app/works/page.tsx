@@ -1,6 +1,11 @@
 import {listWorks} from "@/lib/cms";
 import {WorkCard} from "@/components/WorkCard";
 import {ProjectFilter} from "@/components/ProjectFilter";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Works",
+};
 
 export default async function WorksPage() {
     const works = await listWorks();

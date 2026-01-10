@@ -1,3 +1,9 @@
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Discord Community",
+};
+
 export default function DiscordPage() {
     const discordInviteUrl = process.env.NEXT_PUBLIC_DISCORD_INVITE_URL || "https://jyunnbityuu-desu.com";
 

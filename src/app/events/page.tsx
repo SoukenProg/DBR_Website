@@ -1,6 +1,11 @@
 import {listEvents} from "@/lib/cms";
 import {EventCard} from "@/components/EventCard";
 import {ProjectFilter} from "@/components/ProjectFilter";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Events",
+};
 
 export default async function EventsPage() {
     const events = await listEvents();

@@ -5,9 +5,12 @@ import {Footer} from "@/components/Footer";
 import {Analytics} from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
-    title: "System D.B.R.",
+    title: {
+        template: "%s | Souken521 / System D.B.R.",
+        default: "Souken521 / System D.B.R."
+    },
     description: "Music Circle — System D.B.R.",
-    openGraph: {title: "System D.B.R.", description: "Music Circle — System D.B.R.", type: "website"}
+    openGraph: {title: "Souken521 / System D.B.R.", description: "Music Circle — System D.B.R.", type: "website"}
 };
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (<html lang="ja">

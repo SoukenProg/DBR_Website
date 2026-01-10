@@ -1,5 +1,10 @@
 import {listLinks} from "@/lib/cms";
 import {SocialLinks} from "@/components/SocialLinks";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Links",
+};
 
 export default async function LinksPage() {
     const links = await listLinks();
