@@ -10,6 +10,14 @@ export const metadata: Metadata = {
         default: "Souken521 / System D.B.R."
     },
     description: "Music Circle — System D.B.R.",
+    robots: {
+        index: false,
+        follow: false,
+        googleBot: {
+            index: false,
+            follow: false,
+        }
+    },
     openGraph: {title: "Souken521 / System D.B.R.", description: "Music Circle — System D.B.R.", type: "website"}
 };
 export default function RootLayout({children}: { children: React.ReactNode }) {
