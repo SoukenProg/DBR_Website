@@ -9,7 +9,7 @@ export const metadata: Metadata = {
         template: "%s | Souken521 / System D.B.R.",
         default: "Souken521 / System D.B.R."
     },
-    description: "Music Circle — System D.B.R.",
+    description: "Souken521個人と主催サークルSystem D.B.R.のウェブサイトです.",
     openGraph: {title: "Souken521 / System D.B.R.", description: "Music Circle — System D.B.R.", type: "website"}
 };
 export default function RootLayout({children}: { children: React.ReactNode }) {
