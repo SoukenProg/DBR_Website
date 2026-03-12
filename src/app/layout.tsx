@@ -1,8 +1,8 @@
-import type {Metadata} from "next";
+import type { Metadata } from "next";
 import "./globals.css";
-import {Header} from "@/components/Header";
-import {Footer} from "@/components/Footer";
-import {Analytics} from "@vercel/analytics/react";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
     title: {
@@ -10,12 +10,20 @@ export const metadata: Metadata = {
         default: "Souken521 / System D.B.R."
     },
     description: "Souken521個人と主催サークルSystem D.B.R.のウェブサイトです.",
-    openGraph: {title: "Souken521 / System D.B.R.", description: "Music Circle — System D.B.R.", type: "website"}
+    robots: {
+        index: false,
+        follow: false,
+        googleBot: {
+            index: false,
+            follow: false,
+        }
+    },
+    openGraph: { title: "Souken521 / System D.B.R.", description: "Music Circle — System D.B.R.", type: "website" }
 };
-export default function RootLayout({children}: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (<html lang="ja">
-    <body className="min-h-screen flex flex-col"><Header/>
-    <main className="flex-1">{children}</main>
-    <Footer/><Analytics/></body>
+        <body className="min-h-screen flex flex-col"><Header />
+            <main className="flex-1">{children}</main>
+            <Footer /><Analytics /></body>
     </html>)
 }
