@@ -1,62 +1,11 @@
-# Dev container with a container-local PNPM store to avoid host/guest mismatch
 FROM node:20-alpine
 
-# Use a fixed pnpm and a container-internal store
-ENV PNPM_HOME=/pnpm
-ENV PATH=$PNPM_HOME:$PATH
-RUN apk add --no-cache libc6-compat \
-  && corepack enable \
-  && corepack prepare pnpm@9.11.0 --activate \
-  && pnpm config set store-dir /pnpm/store
+RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-# 1) Pre-fetch all (including dev) into the PNPM store (no node_modules yet)
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm fetch --prod=false
+RUN corepack enable && corepack prepare pnpm@10.17.1 --activate
 
-# 2) Create node_modules by linking from the store (offline first, then prefer-offline fallback)
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --offline --ignore-scripts \
-  || pnpm install --frozen-lockfile --prefer-offline --ignore-scripts　--reporter=ndjson
-
-# 3) Bring in the rest of the source after node_modules exists
-COPY . .
-
-ENV NEXT_TELEMETRY_DISABLED=1
 EXPOSE 3000
 
-# Default command for dev
-CMD ["pnpm", "dev"]
-
-# Dev container with a container-local PNPM store to avoid host/guest mismatch
-FROM node:20-alpine
-
-# Use a fixed pnpm and a container-internal store
-ENV PNPM_HOME=/pnpm
-ENV PATH=$PNPM_HOME:$PATH
-RUN apk add --no-cache libc6-compat \
-  && corepack enable \
-  && corepack prepare pnpm@9.11.0 --activate \
-  && pnpm config set store-dir /pnpm/store
-
-WORKDIR /app
-
-# Install dependencies online (no host store links)
-COPY package.json pnpm-lock.yaml ./
-# If you use workspaces, also copy pnpm-workspace.yaml here.
-ENV CI=1
-ENV NEXT_SKIP_AUTO_INSTALL=1
-# Ensure TypeScript types exist to prevent Next.js auto-install prompt
-RUN pnpm install --save-dev @types/react @types/node \
-  && pnpm install --ignore-scripts --reporter=append-only
-
-# Bring in the rest of the source after node_modules exists
-COPY . .
-
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_SKIP_AUTO_INSTALL=1
-EXPOSE 3000
-
-# Default command for dev
-CMD ["pnpm", "dev"]
+CMD ["sh", "-c", "pnpm install --frozen-lockfile && pnpm dev --hostname 0.0.0.0"]

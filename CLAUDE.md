@@ -37,6 +37,9 @@ docker compose up --build -d
 - `MICROCMS_API_KEY` - microCMSのAPIキー
 - `NEXT_PUBLIC_DISCORD_INVITE_URL` - Discord招待リンクURL（例: https://discord.gg/xxxxx）
 
+オプションの環境変数:
+- `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` - Google Analytics 4の測定ID（例: G-XXXXXXXXXX）
+
 microCMSの認証情報がない場合、`src/lib/cms.ts` で定義されたモックデータにフォールバックします。
 
 ## アーキテクチャ
@@ -121,7 +124,14 @@ Next.js Imageコンポーネントの設定でmicroCMSアセットを許可:
 - ポート3000で公開（docker-composeで4004にマッピング）
 - 本番環境変数は `.env.production` を使用
 
+### アナリティクス
 
+Google Analytics 4を`@next/third-parties/google`パッケージで導入:
+- `src/app/layout.tsx`で`GoogleAnalytics`コンポーネントを使用
+- 環境変数`NEXT_PUBLIC_GOOGLE_ANALYTICS_ID`が設定されている場合のみ有効化
+- 環境変数が未設定の場合、GAスクリプトは読み込まれない（条件付きレンダリング）
+
+**注意:** パッケージ管理には`pnpm`を使用すること。`npm`と混在させると依存関係の競合が発生する。
 
 ### オンデマンド再検証
 

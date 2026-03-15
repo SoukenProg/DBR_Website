@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 
 export const metadata: Metadata = {
     title: {
@@ -24,6 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (<html lang="ja">
         <body className="min-h-screen flex flex-col"><Header />
             <main className="flex-1">{children}</main>
-            <Footer /><Analytics /></body>
+            <Footer />
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+      )}</body>
     </html>)
 }

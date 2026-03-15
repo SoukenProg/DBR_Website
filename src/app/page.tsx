@@ -22,7 +22,7 @@ export default async function HomePage() {
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-900 dark:text-white">作品一覧</h2>
                     <div className="space-y-3 text-gray-700 dark:text-gray-300">
                         <p className="leading-relaxed">
-                            リズムゲーム向けのオリジナル楽曲を制作しています。
+                            オリジナル楽曲を制作しています。
                             Uplifting Trance、Future Bass、Tech House、Hardstyle など、多彩なジャンルの作品をお楽しみいただけます。
                         </p>
                         <div className="pt-2">
