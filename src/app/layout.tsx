@@ -17,11 +17,11 @@ export const metadata: Metadata = {
         }
     },
   openGraph: {
-    type: 'website',
+    type: "website",
     title: "Souken521 / System D.B.R.",
       description: "Souken521個人と主催サークルSystem D.B.R.のウェブサイト",
-    locale: 'ja_JP',
-    url: 'https://your-site.vercel.app/',
+    locale: "ja_JP",
+    url: "https://souken521.com",
     siteName: "Souken521 / System D.B.R.",
   },
 };
