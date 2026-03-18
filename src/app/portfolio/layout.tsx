@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 
+const nameEn = process.env.NEXT_PUBLIC_PORTFOLIO_NAME_EN ?? "";
+
 export const metadata: Metadata = {
-    title: "Portfolio",
+    title: { absolute: `${nameEn} | Portfolio` },
     robots: {
         index: false,
         follow: false,

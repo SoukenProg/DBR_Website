@@ -7,7 +7,6 @@
 // その他のデータは data.private.ts（gitignore済み）で管理。
 // ============================================================
 
-import type { Metadata } from "next";
 import {
     PROFILE_EXTRA,
     SKILLS,
@@ -18,9 +17,6 @@ import {
     COMPETITIVE_PROGRAMMING,
 } from "./data.private";
 
-export const metadata: Metadata = {
-    title: "Portfolio",
-};
 
 export default function PortfolioPage() {
     const PROFILE = {
@@ -120,18 +116,21 @@ export default function PortfolioPage() {
             {/* 職歴・活動歴 */}
             <section>
                 <SectionTitle>職歴 / 活動歴</SectionTitle>
-                <div className="space-y-6">
-                    {EXPERIENCE.map(e => (
-                        <div key={e.role} className="grid grid-cols-[1fr_auto] gap-2">
-                            <div>
-                                <h3 className="font-semibold text-gray-900">{e.role}</h3>
-                                <p className="text-sm text-gray-500">{e.org}</p>
-                                <p className="text-sm text-gray-600 mt-1 leading-relaxed">{e.description}</p>
+                {EXPERIENCE.length === 0
+                    ? <h3 className="font-semibold text-gray-900">なし</h3>
+                    : <div className="space-y-6">
+                        {EXPERIENCE.map(e => (
+                            <div key={e.role} className="grid grid-cols-[1fr_auto] gap-2">
+                                <div>
+                                    <h3 className="font-semibold text-gray-900">{e.role}</h3>
+                                    <p className="text-sm text-gray-500">{e.org}</p>
+                                    <p className="text-sm text-gray-600 mt-1 leading-relaxed">{e.description}</p>
+                                </div>
+                                <p className="text-sm text-gray-400 whitespace-nowrap">{e.period}</p>
                             </div>
-                            <p className="text-sm text-gray-400 whitespace-nowrap">{e.period}</p>
-                        </div>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                }
             </section>
 
             {/* 競技プログラミング */}
