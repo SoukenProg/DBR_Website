@@ -40,7 +40,7 @@ export default async function HomePage() {
                 <section className="bg-accentBlue/10 border border-accentBlue/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentBlue">サークルの紹介</h2>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                        System D.B.R. は、音楽ゲームに合うダンスミュージックとビジュアルを制作するサークルです。
+                        System D.B.R. は、音楽とビジュアルを制作するサークルです。
                         ダーク基調に赤・青・緑のグロー、Dual Bladesモチーフを軸に展開します。
                     </p>
                 </section>

@@ -14,7 +14,7 @@ export function Hero({dbrWork, soukenWork}: { dbrWork?: Work; soukenWork?: Work 
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-widest drop-shadow">
                 System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> / Souken521
             </h1>
-            <p className="mt-4 text-white/70">Dual Blades × Rhythm — 音と光のサークル</p>
+            <p className="mt-4 text-white/70">D.B.R. — Deep Beat Realm</p>
 
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {/* System D.B.R. 最新作 */}
