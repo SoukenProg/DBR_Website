@@ -189,7 +189,7 @@ export default function PortfolioPage() {
 
             {/* フッター */}
             <footer className="border-t border-gray-200 pt-8 text-center text-sm text-gray-400">
-                このページはパスワード保護されており、採用担当者向けの限定公開ページです。
+                このページはアクセス制限されており、採用担当者向けの限定公開ページです。
             </footer>
         </div>
     );

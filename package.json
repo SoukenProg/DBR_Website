@@ -6,7 +6,10 @@
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cf:build": "next build && npx @opennextjs/cloudflare build",
+    "cf:preview": "npx wrangler dev --port 8787",
+    "cf:deploy": "npx wrangler deploy"
   },
   "dependencies": {
     "@next/third-parties": "16.1.6",
@@ -19,6 +22,7 @@
     "zod": "4.1.11"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "latest",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "24.6.2",
     "@types/react": "19.2.0",
@@ -28,9 +32,10 @@
     "postcss": "8.5.6",
     "tailwindcss": "4.1.14",
     "typescript": "5.9.3",
-    "typescript-eslint": "^8.57.0"
+    "typescript-eslint": "^8.57.0",
+    "wrangler": "latest"
   },
-  "packageManager": "pnpm@10.17.1+sha512.17c560fca4867ae9473a3899ad84a88334914f379be46d455cbf92e5cf4b39d34985d452d2583baf19967fa76cb5c17bc9e245529d0b98745721aa7200ecaf7a",
+  "packageManager": "pnpm@10.32.1+sha512.a706938f0e89ac1456b6563eab4edf1d1faf3368d1191fc5c59790e96dc918e4456ab2e67d613de1043d2e8c81f87303e6b40d4ffeca9df15ef1ad567348f2be",
   "pnpm": {
     "overrides": {
       "@types/react": "19.2.0"

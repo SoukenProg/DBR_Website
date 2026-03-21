@@ -144,3 +144,10 @@ fix.sh
 # ポートフォリオ プライベートデータ（個人情報を含むため除外）
 *.private.ts
 
+# Cloudflare / Wrangler
+.wrangler/
+.open-next/
+.cloudflare/
+.dev.vars
+.dev.vars.*
+
