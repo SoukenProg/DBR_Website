@@ -41,7 +41,10 @@
       "@types/react": "19.2.0"
     },
     "onlyBuiltDependencies": [
-      "@tailwindcss/oxide"
+      "@tailwindcss/oxide",
+      "esbuild",
+      "unrs-resolver",
+      "workerd"
     ],
     "ignoredBuiltDependencies": [
       "sharp"
