@@ -6,6 +6,7 @@ import {useState} from "react";
 export function Header() {
     const [open, setOpen] = useState(false);
     const nav = [
+        { href: "/notices", label: "News" },
         { href: "/about", label: "About" },
         { href: "/works", label: "Works" },
         { href: "/events", label: "Events" },

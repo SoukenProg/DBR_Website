@@ -1,15 +1,16 @@
 import {Hero} from "@/components/Hero";
-import {getLatestWorkByProject, listEvents, listLinks} from "@/lib/cms";
+import {getLatestWorkByProject, listEvents, listLinks, listNotices} from "@/lib/cms";
 import {EventCard} from "@/components/EventCard";
 import {SocialLinks} from "@/components/SocialLinks";
 import Link from "next/link";
 
 export default async function HomePage() {
-    const [dbrWork, soukenWork, events, links] = await Promise.all([
+    const [dbrWork, soukenWork, events, links, notices] = await Promise.all([
         getLatestWorkByProject("System D.B.R."),
         getLatestWorkByProject("Souken521"),
         listEvents(),
-        listLinks()
+        listLinks(),
+        listNotices()
     ]);
     const upcoming = events?.[0];
     return (
@@ -17,6 +18,33 @@ export default async function HomePage() {
             <Hero dbrWork={dbrWork} soukenWork={soukenWork}/>
 
             <div className="max-w-4xl mx-auto px-6 py-12 space-y-8">
+                {/* お知らせ */}
+                {notices.length > 0 && (
+                    <section className="bg-orange-500/10 border border-orange-500/30 rounded-lg p-8">
+                        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">お知らせ</h2>
+                        <ul className="space-y-2 mb-4">
+                            {notices.slice(0, 3).map((notice) => (
+                                <li key={notice.slug} className="flex items-start gap-2">
+                                    {notice.important && (
+                                        <span className="shrink-0 text-xs font-bold bg-accentRed text-white px-1.5 py-0.5 rounded mt-0.5">重要</span>
+                                    )}
+                                    <span className="text-sm text-gray-400 shrink-0">
+                                        {notice.date ? new Date(notice.date).toLocaleDateString("ja-JP", {timeZone: "Asia/Tokyo"}) : ""}
+                                    </span>
+                                    <Link
+                                        href={`/notices/${notice.slug}`}
+                                        className="text-gray-700 dark:text-gray-300 hover:text-accentBlue dark:hover:text-accentBlue text-sm truncate"
+                                    >
+                                        {notice.title}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                        <Link href="/notices" className="text-accentBlue hover:text-accentBlue/80 text-sm underline">
+                            すべてのお知らせを見る →
+                        </Link>
+                    </section>
+                )}
                 {/* 作品一覧 */}
                 <section className="bg-gradient-to-br from-accentRed/10 to-accentBlue/10 border border-accentRed/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-900 dark:text-white">作品一覧</h2>
@@ -49,7 +77,7 @@ export default async function HomePage() {
                 <section className="bg-accentGreen/10 border border-accentGreen/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-accentGreen">主催プロフィール</h2>
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                        Souken521: 作編曲／サウンドデザイン／3D & Motion
+                        Souken521: 作編曲／3D & Motion
                     </p>
                     <div className="mt-4">
                         <Link href="/about" className="text-accentBlue hover:text-accentBlue/80 underline">

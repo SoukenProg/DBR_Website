@@ -173,6 +173,46 @@ export async function getEvent(slug: string): Promise<Event | undefined> {
     return json?.contents?.[0];
 }
 
+export type Notice = {
+    title: string;
+    slug: string;
+    body?: string;
+    category?: string;
+    important?: boolean;
+    date?: string;
+};
+
+const MOCK_NOTICES: Notice[] = [
+    {
+        title: "サイトをリニューアルしました",
+        slug: "site-renewal",
+        body: "<p>新しいWebサイトをオープンしました。</p>",
+        category: "info",
+        important: false,
+        date: "2025-01-01T00:00:00.000Z"
+    }
+];
+
+export async function listNotices(): Promise<Notice[]> {
+    if (!hasMicroCMSEnv()) return MOCK_NOTICES;
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/notice?limit=100&orders=-date`;
+    const res = await fetch(endpoint, {
+        headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
+        next: {revalidate: 300}
+    });
+    const json = await res.json();
+    return json?.contents ?? [];
+}
+
+export async function getNotice(slug: string): Promise<Notice | undefined> {
+    if (!hasMicroCMSEnv()) return MOCK_NOTICES.find(n => n.slug === slug);
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/notice?filters=slug[equals]${slug}&limit=1`;
+    const res = await fetch(endpoint, {headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!}});
+    if (!res.ok) return undefined;
+    const json = await res.json();
+    return json?.contents?.[0];
+}
+
 export async function listLinks(): Promise<{ label: string; url: string }[]> {
     if (!hasMicroCMSEnv()) return MOCK.links;
     const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/link?limit=100`;
