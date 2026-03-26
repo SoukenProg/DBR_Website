@@ -37,8 +37,8 @@ importers:
         version: 4.3.6
     devDependencies:
       '@opennextjs/cloudflare':
-        specifier: latest
-        version: 1.17.1(next@16.2.1(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.76.0)
+        specifier: 1.17.3
+        version: 1.17.3(next@16.2.1(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.76.0)
       '@tailwindcss/postcss':
         specifier: ^4.2.2
         version: 4.2.2
@@ -46,8 +46,8 @@ importers:
         specifier: 25.5.0
         version: 25.5.0
       '@types/react':
-        specifier: 19.2.14
-        version: 19.2.14
+        specifier: 19.2.0
+        version: 19.2.0
       autoprefixer:
         specifier: 10.4.27
         version: 10.4.27(postcss@8.5.8)
@@ -1116,8 +1116,8 @@ packages:
     peerDependencies:
       next: ~15.0.8 || ~15.1.12 || ~15.2.9 || ~15.3.9 || ~15.4.11 || ~15.5.10 || ~16.0.11 || ^16.1.5
 
-  '@opennextjs/cloudflare@1.17.1':
-    resolution: {integrity: sha512-TtmjhXUEpSbnb9kgr7IQtmlQugOeX0cHiLc/e6NYAnmqQVro3yN49WvzaclSGFZod/lJFW7pOJ0NGT6JpqypAw==}
+  '@opennextjs/cloudflare@1.17.3':
+    resolution: {integrity: sha512-BQT8R/CEqrZS2sYydJ6uqv3U+yZAxbTeDUfgqQIlOnhu3wDPsB/QuuUBBseWOZiOdZ8gLegK6F2SLKia74Nv6g==}
     hasBin: true
     peerDependencies:
       next: ~15.0.8 || ~15.1.12 || ~15.2.9 || ~15.3.9 || ~15.4.11 || ~15.5.10 || ~16.0.11 || ^16.1.5
@@ -1480,8 +1480,8 @@ packages:
   '@types/node@25.5.0':
     resolution: {integrity: sha512-jp2P3tQMSxWugkCUKLRPVUpGaL5MVFwF8RDuSRztfwgN1wmqJeMSbKlnEtQqU8UrhTmzEmZdu2I6v2dpp7XIxw==}
 
-  '@types/react@19.2.14':
-    resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
+  '@types/react@19.2.0':
+    resolution: {integrity: sha512-1LOH8xovvsKsCBq1wnT4ntDUdCJKmnEakhsuoUSy6ExlHCkGP2hqnatagYTgFk6oeL0VU31u7SNjunPN+GchtA==}
 
   '@typescript-eslint/eslint-plugin@8.57.1':
     resolution: {integrity: sha512-Gn3aqnvNl4NGc6x3/Bqk1AOn0thyTU9bqDRhiRnUWezgvr2OnhYCWCgC8zXXRVqBsIL1pSDt7T9nJUe0oM0kDQ==}
@@ -4791,7 +4791,7 @@ snapshots:
       - aws-crt
       - supports-color
 
-  '@opennextjs/cloudflare@1.17.1(next@16.2.1(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.76.0)':
+  '@opennextjs/cloudflare@1.17.3(next@16.2.1(@babel/core@7.29.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(wrangler@4.76.0)':
     dependencies:
       '@ast-grep/napi': 0.40.5
       '@dotenvx/dotenvx': 1.31.0
@@ -5267,7 +5267,7 @@ snapshots:
     dependencies:
       undici-types: 7.18.2
 
-  '@types/react@19.2.14':
+  '@types/react@19.2.0':
     dependencies:
       csstype: 3.2.3
 

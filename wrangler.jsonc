@@ -1,0 +1,20 @@
+{
+    "name": "dbr-website",
+    "main": ".open-next/worker.js",
+    "compatibility_date": "2025-01-01",
+    "compatibility_flags": ["nodejs_compat"],
+
+    "assets": {
+        "directory": ".open-next/assets",
+        "binding": "ASSETS"
+    },
+
+    // 本番環境の vars（機密でないもの）
+    // 機密情報（APIキー等）は `wrangler secret put <KEY>` で登録すること
+    "vars": {
+        // "NODE_ENV": "production"  // 必要に応じてアンコメント
+    }
+
+    // カスタムドメインはダッシュボードの Workers > Custom Domains から追加:
+    //   - souken521.com
+}
