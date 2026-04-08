@@ -108,8 +108,7 @@ App Router（Next.js 16）でTypeScriptの型付きルートを有効化:
 - カスタムテーマカラー:
   - `accentRed`, `accentBlue`, `accentGreen`（System D.B.R.のRGBグロー美学）
   - `accentPurple`（Souken521のブランドカラー）
-- "Dual Blades"ビジュアルモチーフ用のカスタムglowシャドウユーティリティ
-- ダークテーマベースライン（黒背景、白テキスト）
+- ダークテーマとライトテーマを併用
 
 ### 画像処理
 
