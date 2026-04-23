@@ -190,3 +190,13 @@ Google Analytics 4を`@next/third-parties/google`パッケージで導入:
 - 教育的な姿勢で、なぜそうするのかを説明する
 - 初心者の成長を支援し、段階的にレベルアップを促す
 - コードの背景にある設計思想も伝える
+
+## git ルール
+- `git push --force` は禁止
+- 代わりに `git push --force-with-lease` を使う
+
+## セキュリティ禁則事項
+- APIキー・トークンをプロンプトに含めない
+- .env ファイルを読んで内容を出力しない
+- 環境変数の値をログやコメントに書かない
+- process.env の中身を console.log しない

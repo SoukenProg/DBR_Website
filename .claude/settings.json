@@ -1,0 +1,68 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash(git commit*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node scripts/secret-scan.mjs"
+          }
+        ]
+      }
+    ]
+  }
+
+  "permissions": {
+    "allow": [
+      "Read(**)",
+      "Glob(**)",
+      "Grep(**)",
+      "Bash(ls *)",
+      "Bash(pwd)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(node -v)",
+      "Bash(pnpm -v)",
+      "Bash(npm -v)"
+    ],
+    "deny": [
+      "Bash(rm -rf*)",
+      "Bash(sudo *)",
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -fd*)",
+      "Bash(git clean -fdx*)",
+      "Bash(DROP TABLE*)",
+      "Bash(truncate*)",
+      "Bash(dd *)",
+      "Bash(mkfs*)",
+      "Bash(shred *)",
+      "Bash(find . -delete*)",
+      "Bash(curl * | bash)",
+      "Bash(wget * | sh)"
+    ],
+    "ask": [
+      "Write(**)",
+      "Edit(**)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git tag*)",
+      "Bash(pnpm install*)",
+      "Bash(npm install*)",
+      "Bash(pnpm add*)",
+      "Bash(npm add*)",
+      "Bash(pnpm remove*)",
+      "Bash(npm remove*)",
+      "Bash(npx *)",
+      "Bash(pnpm dlx *)",
+      "Bash(npm run build*)",
+      "Bash(pnpm build*)",
+      "Bash(wrangler *)",
+      "Bash(vercel *)",
+      "Bash(npm publish*)",
+      "Bash(wrangler pages deploy*)"
+    ]
+  }
+}
