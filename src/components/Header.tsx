@@ -20,11 +20,11 @@ export function Header() {
                 System <span className="text-accentGreen">D.</span><span className="text-accentBlue">B.</span><span className="text-accentRed">R.</span> / Souken521
             </Link>
             <nav className="hidden md:flex gap-6">{nav.map(n => (
-                <Link key={n.href} href={n.href} className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white/80">{n.label}</Link>))}</nav>
+                <Link key={n.href} href={n.href as Route}  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white/80">{n.label}</Link>))}</nav>
             <button className="md:hidden text-gray-900 dark:text-white" onClick={() => setOpen(!open)} aria-label="menu">☰</button>
         </div>
         {open && (<div className="md:hidden border-t border-gray-200 dark:border-white/10">
             <div className="container py-2 flex flex-col gap-2">{nav.map(n => (
-                <Link key={n.href} href={n.href} onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300">{n.label}</Link>))}</div>
+                <Link key={n.href} href={n.href as Route} onClick={() => setOpen(false)} className="text-gray-700 dark:text-gray-300">{n.label}</Link>))}</div>
         </div>)}</header>)
 }

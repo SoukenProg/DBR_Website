@@ -198,7 +198,7 @@ export async function listNotices(): Promise<Notice[]> {
     const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/notice?limit=100&orders=-date`;
     const res = await fetch(endpoint, {
         headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
-        next: {revalidate: 300}
+        next: {revalidate: 60}
     });
     const json = await res.json();
     return json?.contents ?? [];
