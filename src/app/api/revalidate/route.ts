@@ -10,7 +10,9 @@ export async function POST(req: NextRequest) {
     revalidatePath("/");
     revalidatePath("/notices");
     revalidatePath("/works");
+    revalidatePath("/works/[slug]", "page");
     revalidatePath("/events");
+    revalidatePath("/events/[slug]", "page");
 
     return NextResponse.json({revalidated: true, now: Date.now()});
 }

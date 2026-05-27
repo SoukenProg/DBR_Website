@@ -44,6 +44,7 @@ export type Event = {
     title: string;
     slug: string;
     date?: string;
+    enddate?: string;
     place?: string;
     space?: string;
     mapUrl?: string;

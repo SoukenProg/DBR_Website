@@ -6,8 +6,12 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
     const ev = await getEvent(params.slug);
     if (!ev) return notFound();
     return (<div className="container py-12"><h1 className="text-2xl font-bold mb-4">{ev.title}</h1>
-        <div
-            className="text-white/80 mb-4">{ev.date} {ev.place ? `@ ${ev.place}` : ""} {ev.space ? `（スペース: ${ev.space}）` : ""}</div>
+        <div className="text-white/80 mb-4">
+            {ev.date} {ev.place ? `@ ${ev.place}` : ""} {ev.space ? `（スペース: ${ev.space}）` : ""}
+        </div>
+        {ev.enddate && (
+            <div className="text-sm text-accentRed/80 mb-4">終了日: {ev.enddate}</div>
+        )}
         {ev.notes ? (
             <div
                 className="text-white/80 mb-4 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
