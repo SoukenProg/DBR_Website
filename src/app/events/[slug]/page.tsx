@@ -5,12 +5,13 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
     const params = await props.params;
     const ev = await getEvent(params.slug);
     if (!ev) return notFound();
+    const formatDate = (d?: string) => d ? new Date(d).toLocaleDateString('sv-SE', {timeZone: 'Asia/Tokyo'}) : "";
     return (<div className="container py-12"><h1 className="text-2xl font-bold mb-4">{ev.title}</h1>
         <div className="text-white/80 mb-4">
-            {ev.date} {ev.place ? `@ ${ev.place}` : ""} {ev.space ? `（スペース: ${ev.space}）` : ""}
+            {formatDate(ev.date)} {ev.place ? `@ ${ev.place}` : ""} {ev.space ? `（スペース: ${ev.space}）` : ""}
         </div>
         {ev.enddate && (
-            <div className="text-sm text-accentRed/80 mb-4">終了日: {ev.enddate}</div>
+            <div className="text-sm text-accentRed/80 mb-4">終了日: {formatDate(ev.enddate)}</div>
         )}
         {ev.notes ? (
             <div

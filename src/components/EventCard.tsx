@@ -15,7 +15,7 @@ export function EventCard({event}: { event: { title: string; slug: string; date?
         return event.project.name;
     };
     const projectName = getProjectName();
-    const formatDate = (d?: string) => d ? d.slice(0, 10) : "";
+    const formatDate = (d?: string) => d ? new Date(d).toLocaleDateString('sv-SE', {timeZone: 'Asia/Tokyo'}) : "";
 
     return (
         <Link
