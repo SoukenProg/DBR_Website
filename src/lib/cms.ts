@@ -18,12 +18,18 @@ export type ProjectField = {
     revisedAt?: string;
 };
 
+export type WorkTrack = {
+    title: string;
+    artist?: string;
+};
+
 export type Work = {
     title: string;
     slug: string;
     jacket?: ImageField | string; // オブジェクト形式または文字列形式
     releaseDate?: string;
     description?: string;
+    tracks?: WorkTrack[];
     tags?: string[] | any[]; // 文字列配列またはオブジェクト配列
     platforms?: Platform[];
     project?: ProjectField | ProjectField[]; // 配列形式もサポート
@@ -36,8 +42,15 @@ export type EventLineupItem = {
     isLimited?: boolean;
     boothUrl?: string;
     sampleUrl?: string;
+    youtubeUrl?: string;
     note?: string;
     order?: number;
+};
+
+export type EventCredit = {
+    role: string;
+    name: string;
+    url?: string;
 };
 
 export type Event = {
@@ -45,6 +58,8 @@ export type Event = {
     slug: string;
     date?: string;
     enddate?: string;
+    jacket?: ImageField | string;
+    credits?: EventCredit[];
     place?: string;
     space?: string;
     mapUrl?: string;

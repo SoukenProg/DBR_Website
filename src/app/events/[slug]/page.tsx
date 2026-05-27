@@ -1,57 +1,209 @@
 import {getEvent} from "@/lib/cms";
 import {notFound} from "next/navigation";
+import Image from "next/image";
 
 export default async function EventDetail(props: { params: Promise<{ slug: string }> }) {
     const params = await props.params;
     const ev = await getEvent(params.slug);
     if (!ev) return notFound();
+
     const formatDate = (d?: string) => d ? new Date(d).toLocaleDateString('sv-SE', {timeZone: 'Asia/Tokyo'}) : "";
-    return (<div className="container py-12"><h1 className="text-2xl font-bold mb-4">{ev.title}</h1>
-        <div className="text-white/80 mb-4">
-            {formatDate(ev.date)} {ev.place ? `@ ${ev.place}` : ""} {ev.space ? `（スペース: ${ev.space}）` : ""}
-        </div>
-        {ev.enddate && (
-            <div className="text-sm text-accentRed/80 mb-4">終了日: {formatDate(ev.enddate)}</div>
-        )}
-        {ev.notes ? (
-            <div
-                className="text-white/80 mb-4 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
-                dangerouslySetInnerHTML={{__html: ev.notes}}
-            />
-        ) : (
-            <p className="text-white/80">イベント詳細（頒布物・決済方法など）</p>
-        )}{ev.mapUrl ?
-            <a className="underline" href={ev.mapUrl} target="_blank"
-               rel="noreferrer">地図を見る</a> : null}{ev.lineup?.length ? (
-            <section className="mt-10"><h2 className="text-xl font-semibold mb-3">頒布ラインナップ</h2>
-                <ul className="space-y-3">{ev.lineup.slice().sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999)).map((item, i) => {
-                    const w: any = item.work;
-                    const title = w?.title ?? w?.id ?? "Unknown";
-                    const jacket = w?.jacket;
-                    const slug = w?.slug ?? w?.id;
-                    return (<li key={i} className="flex gap-3 border border-white/10 rounded p-3">{jacket ?
-                        <img src={jacket} alt={title} className="w-20 h-20 object-cover rounded"/> :
-                        <div className="w-20 h-20 bg-white/5 rounded"/>}
-                        <div className="flex-1">
-                            <div className="flex items-center gap-2"><a className="font-semibold underline"
-                                                                        href={`/works/${slug}`}>{title}</a>{item.isNew ? (
-                                <span
-                                    className="text-[10px] px-1.5 py-0.5 rounded bg-accentGreen/20 border border-accentGreen/40">NEW</span>) : null}{item.isLimited ? (
-                                <span
-                                    className="text-[10px] px-1.5 py-0.5 rounded bg-accentRed/20 border border-accentRed/40">LIMITED</span>) : null}
+
+    const jacketUrl = ev.jacket
+        ? (typeof ev.jacket === 'string' ? ev.jacket : ev.jacket.url)
+        : undefined;
+
+    const toEmbedUrl = (url: string) => {
+        const m = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+        return m ? `https://www.youtube.com/embed/${m[1]}` : url;
+    };
+
+    const sortedLineup = ev.lineup
+        ? [...ev.lineup].sort((a, b) => (a.order ?? 9999) - (b.order ?? 9999))
+        : [];
+
+    return (
+        <div>
+            {/* Hero */}
+            <div className="relative h-64 md:h-96 overflow-hidden bg-black">
+                {jacketUrl && (
+                    <Image
+                        src={jacketUrl}
+                        alt={ev.title}
+                        fill
+                        className="object-cover opacity-60"
+                        priority
+                    />
+                )}
+                <div className="absolute inset-0 flex flex-col justify-end p-8 bg-linear-to-t from-black/80 to-transparent">
+                    <h1 className="text-3xl md:text-5xl font-bold text-white drop-shadow">{ev.title}</h1>
+                </div>
+            </div>
+
+            <div className="max-w-4xl mx-auto px-6 py-12 space-y-16">
+
+                {/* INTRODUCTION */}
+                {ev.notes && (
+                    <section>
+                        <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-4">INTRODUCTION</h2>
+                        <div
+                            className="text-white/80 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
+                            dangerouslySetInnerHTML={{__html: ev.notes}}
+                        />
+                    </section>
+                )}
+
+                {/* SPEC */}
+                <section>
+                    <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-6">SPEC</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                        {jacketUrl && (
+                            <div className="relative aspect-square max-w-xs mx-auto md:mx-0 w-full">
+                                <Image
+                                    src={jacketUrl}
+                                    alt={ev.title}
+                                    fill
+                                    className="object-cover rounded"
+                                />
                             </div>
-                            {typeof item.price === "number" && (<div
-                                className="text-white/80 text-sm mt-1">価格：{item.price.toLocaleString()}円</div>)}{(item.boothUrl || item.sampleUrl) && (
-                            <div className="flex flex-wrap gap-2 mt-2 text-sm">{item.boothUrl &&
-                                <a className="underline" href={item.boothUrl} target="_blank"
-                                   rel="noreferrer">BOOTH</a>}{item.sampleUrl &&
-                                <a className="underline" href={item.sampleUrl} target="_blank"
-                                   rel="noreferrer">試聴</a>}</div>)}{item.note &&
-                            <div
-                                className="text-white/70 text-sm mt-1 [&_p]:mb-2 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
-                                dangerouslySetInnerHTML={{__html: item.note}}
-                            />}</div>
-                    </li>)
-                })}</ul>
-            </section>) : null}</div>)
+                        )}
+                        <dl className="space-y-4 text-sm">
+                            <div className="flex gap-4">
+                                <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Title</dt>
+                                <dd className="text-white">{ev.title}</dd>
+                            </div>
+                            {(ev.date || ev.enddate) && (
+                                <div className="flex gap-4">
+                                    <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Date</dt>
+                                    <dd className="text-white">
+                                        {formatDate(ev.date)}{ev.enddate ? ` ~ ${formatDate(ev.enddate)}` : ""}
+                                    </dd>
+                                </div>
+                            )}
+                            {ev.place && (
+                                <div className="flex gap-4">
+                                    <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Venue</dt>
+                                    <dd className="text-white">{ev.place}</dd>
+                                </div>
+                            )}
+                            {ev.space && (
+                                <div className="flex gap-4">
+                                    <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Space</dt>
+                                    <dd className="text-white">{ev.space}</dd>
+                                </div>
+                            )}
+                            {ev.mapUrl && (
+                                <div className="flex gap-4">
+                                    <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Map</dt>
+                                    <dd>
+                                        <a className="text-accentBlue underline" href={ev.mapUrl} target="_blank" rel="noreferrer">地図を見る</a>
+                                    </dd>
+                                </div>
+                            )}
+                        </dl>
+                    </div>
+                </section>
+
+                {/* LINEUP */}
+                {sortedLineup.length > 0 && (
+                    <section>
+                        <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-6">LINEUP</h2>
+                        <ol className="space-y-4">
+                            {sortedLineup.map((item, i) => {
+                                const w: any = item.work;
+                                const title = w?.title ?? w?.id ?? "Unknown";
+                                const rawJacket = w?.jacket;
+                                const itemJacketUrl = rawJacket
+                                    ? (typeof rawJacket === 'string' ? rawJacket : rawJacket.url)
+                                    : undefined;
+                                const slug = w?.slug ?? w?.id;
+                                return (
+                                    <li key={i} className="flex gap-4 border-b border-white/10 pb-4">
+                                        <span className="text-accentRed font-mono text-sm w-8 shrink-0 pt-1">
+                                            {String(i + 1).padStart(2, '0')}
+                                        </span>
+                                        {itemJacketUrl && (
+                                            <img
+                                                src={itemJacketUrl}
+                                                alt={title}
+                                                className="w-16 h-16 object-cover rounded shrink-0"
+                                            />
+                                        )}
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex flex-wrap items-center gap-2">
+                                                <a className="font-semibold text-white hover:underline" href={`/works/${slug}`}>
+                                                    {title}
+                                                </a>
+                                                {item.isNew && (
+                                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-accentGreen/20 border border-accentGreen/40 text-accentGreen">NEW</span>
+                                                )}
+                                                {item.isLimited && (
+                                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-accentRed/20 border border-accentRed/40 text-accentRed">LIMITED</span>
+                                                )}
+                                            </div>
+                                            {typeof item.price === "number" && (
+                                                <div className="text-white/60 text-sm mt-1">¥{item.price.toLocaleString()}</div>
+                                            )}
+                                            {item.note && (
+                                                <div
+                                                    className="text-white/50 text-xs mt-1 [&_p]:mb-1 [&_a]:text-accentBlue [&_a]:underline"
+                                                    dangerouslySetInnerHTML={{__html: item.note}}
+                                                />
+                                            )}
+                                            {(item.boothUrl || item.sampleUrl) && (
+                                                <div className="flex gap-3 mt-2 text-sm">
+                                                    {item.boothUrl && (
+                                                        <a className="text-accentBlue underline" href={item.boothUrl} target="_blank" rel="noreferrer">BOOTH</a>
+                                                    )}
+                                                    {item.sampleUrl && (
+                                                        <a className="text-accentBlue underline" href={item.sampleUrl} target="_blank" rel="noreferrer">試聴</a>
+                                                    )}
+                                                </div>
+                                            )}
+                                            {item.youtubeUrl && (
+                                                <div className="relative aspect-video mt-3 rounded overflow-hidden">
+                                                    <iframe
+                                                        className="absolute inset-0 w-full h-full"
+                                                        src={toEmbedUrl(item.youtubeUrl)}
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                        </ol>
+                    </section>
+                )}
+
+                {/* CREDIT */}
+                {ev.credits && ev.credits.length > 0 && (
+                    <section>
+                        <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-6">CREDIT</h2>
+                        <ul className="space-y-3">
+                            {ev.credits.map((c, i) => (
+                                <li key={i} className="flex flex-wrap items-center gap-3 border-b border-white/10 pb-3">
+                                    <span className="text-white/40 text-xs w-32 shrink-0">{c.role}</span>
+                                    <span className="text-white font-semibold">{c.name}</span>
+                                    {c.url && (
+                                        <a
+                                            href={c.url}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className="text-xs text-accentBlue border border-accentBlue/40 px-2 py-0.5 rounded hover:bg-accentBlue/10 transition-colors"
+                                        >
+                                            Website
+                                        </a>
+                                    )}
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
+
+            </div>
+        </div>
+    );
 }
