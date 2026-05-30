@@ -149,3 +149,7 @@ fix.sh
 .dev.vars.*
 
 .DS_Store
+
+# Local-only files (never committed)
+*.local.ts
+*.local.js

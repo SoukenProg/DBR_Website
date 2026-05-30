@@ -4,6 +4,10 @@ const nextConfig = {
             {
                 protocol: "https",
                 hostname: "**.microcms-assets.io"
+            },
+            {
+                protocol: "https",
+                hostname: "placehold.co"
             }
         ]
     },

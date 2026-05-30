@@ -68,57 +68,18 @@ export type Event = {
     project?: ProjectField | ProjectField[]; // 配列形式もサポート
 };
 
+// mock-data.local.ts はgitignore対象のローカルファイル。存在しない場合は空データにフォールバック。
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const LOCAL = (() => { try { return require('./mock-data.local'); } catch { return {}; } })();
+
 const MOCK = {
-    works: [
-        {
-            title: "Rival Sabers - Prototype",
-            slug: "rival-sabers-prototype",
-            releaseDate: "2025-08-15",
-            tags: ["future-bass", "game-ready"],
-            platforms: [
-                {label: "YouTube", url: "https://youtu.be/xxxxxxxx", iconKey: "youtube"},
-                {label: "BOOTH", url: "https://booth.pm/ja/items/xxxxxxxx", iconKey: "booth"}
-            ],
-            project: {id: "system-dbr", name: "System D.B.R.", slug: "system-dbr"}
-        },
-        {
-            title: "Personal Track",
-            slug: "personal-track",
-            releaseDate: "2025-07-10",
-            tags: ["ambient", "experimental"],
-            platforms: [
-                {label: "SoundCloud", url: "https://soundcloud.com/track", iconKey: "soundcloud"}
-            ],
-            project: {id: "souken521", name: "Souken521", slug: "souken521"}
-        }
-    ] as Work[],
-    events: [
-        {
-            title: "ComicVket 2025 Autumn",
-            slug: "comicvket-2025-autumn",
-            date: "2025-11-03",
-            place: "オンライン",
-            space: "A-01",
-            lineup: [
-                {
-                    work: {title: "Rival Sabers - Prototype", slug: "rival-sabers-prototype"},
-                    price: 1500,
-                    isNew: true,
-                    boothUrl: "https://booth.pm/ja/items/xxxxxxxx",
-                    order: 1
-                }
-            ],
-            project: {id: "system-dbr", name: "System D.B.R.", slug: "system-dbr"}
-        }
-    ] as Event[],
-    links: [
-        {label: "X", url: "https://x.com"},
-        {label: "YouTube", url: "https://youtube.com"},
-        {label: "BOOTH", url: "https://booth.pm"}
-    ]
+    works: (LOCAL.MOCK_WORKS ?? []) as Work[],
+    events: (LOCAL.MOCK_EVENTS ?? []) as Event[],
+    links: (LOCAL.MOCK_LINKS ?? []) as { label: string; url: string }[]
 };
 
 function hasMicroCMSEnv() {
+    if (process.env.MICROCMS_FORCE_MOCK === 'true') return false;
     return !!process.env.MICROCMS_SERVICE_DOMAIN && !!process.env.MICROCMS_API_KEY;
 }
 
@@ -198,16 +159,7 @@ export type Notice = {
     date?: string;
 };
 
-const MOCK_NOTICES: Notice[] = [
-    {
-        title: "サイトをリニューアルしました",
-        slug: "site-renewal",
-        body: "<p>新しいWebサイトをオープンしました。</p>",
-        category: "info",
-        important: false,
-        date: "2025-01-01T00:00:00.000Z"
-    }
-];
+const MOCK_NOTICES: Notice[] = LOCAL.MOCK_NOTICES ?? [];
 
 export async function listNotices(): Promise<Notice[]> {
     if (!hasMicroCMSEnv()) return MOCK_NOTICES;
