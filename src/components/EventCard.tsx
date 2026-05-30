@@ -20,7 +20,7 @@ export function EventCard({event}: { event: { title: string; slug: string; date?
     return (
         <Link
             href={`/events/${event.slug}`}
-            className="group border border-accentRed/30 bg-white/50 dark:bg-gray-800/50 rounded-lg p-4 hover:border-accentRed transition-all duration-300"
+            className="block group border border-accentRed/30 bg-white/50 dark:bg-gray-800/50 rounded-lg p-4 hover:border-accentRed transition-all duration-300"
         >
             <div className="flex items-center gap-2">
                 <div className="font-semibold text-gray-900 dark:text-white">{event.title}</div>

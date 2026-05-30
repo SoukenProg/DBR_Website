@@ -67,24 +67,29 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
             )}
 
             {/* 曲目一覧 */}
-            {work.tracks && work.tracks.length > 0 && (
-                <div className="mb-8">
-                    <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-4">TRACKLIST</h2>
-                    <ol className="space-y-2">
-                        {work.tracks.map((track, i) => (
-                            <li key={i} className="flex items-baseline gap-3 border-b border-white/10 pb-2">
-                                <span className="text-accentRed font-mono text-sm w-7 shrink-0">
-                                    {String(i + 1).padStart(2, '0')}
-                                </span>
-                                <span className="text-white font-medium">{track.title}</span>
-                                {track.artist && (
-                                    <span className="text-white/50 text-sm ml-auto shrink-0">{track.artist}</span>
-                                )}
-                            </li>
-                        ))}
-                    </ol>
-                </div>
-            )}
+            {(() => {
+                const tracks = work.tracks && work.tracks.length > 0
+                    ? work.tracks
+                    : [{title: work.title}];
+                return (
+                    <div className="mb-8">
+                        <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-4">TRACKLIST</h2>
+                        <ol className="space-y-2">
+                            {tracks.map((track, i) => (
+                                <li key={i} className="flex items-baseline gap-3 border-b border-white/10 pb-2">
+                                    <span className="text-accentRed font-mono text-sm w-7 shrink-0">
+                                        {String(i + 1).padStart(2, '0')}
+                                    </span>
+                                    <span className="text-white font-medium">{track.title}</span>
+                                    {track.artist && (
+                                        <span className="text-white/50 text-sm ml-auto shrink-0">{track.artist}</span>
+                                    )}
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                );
+            })()}
 
             {/* タグ */}
             {Array.isArray(work.tags) && work.tags.length > 0 && (

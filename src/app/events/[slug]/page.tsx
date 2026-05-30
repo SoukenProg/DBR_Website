@@ -144,6 +144,25 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                             {typeof item.price === "number" && (
                                                 <div className="text-white/60 text-sm mt-1">¥{item.price.toLocaleString()}</div>
                                             )}
+                                            {(() => {
+                                                const tracks: { title: string; artist?: string }[] =
+                                                    w?.tracks && w.tracks.length > 0
+                                                        ? w.tracks
+                                                        : [{title: title}];
+                                                return (
+                                                    <div className="mt-2">
+                                                        <span className="text-[10px] text-white/40 uppercase tracking-wider">曲目一覧</span>
+                                                        <ol className="mt-1 space-y-0.5">
+                                                            {tracks.map((track, ti) => (
+                                                                <li key={ti} className="flex gap-2 text-xs text-white/60">
+                                                                    <span className="text-white/30 font-mono w-4 shrink-0">{ti + 1}.</span>
+                                                                    <span>{track.title}{track.artist ? ` / ${track.artist}` : ""}</span>
+                                                                </li>
+                                                            ))}
+                                                        </ol>
+                                                    </div>
+                                                );
+                                            })()}
                                             {item.note && (
                                                 <div
                                                     className="text-white/50 text-xs mt-1 [&_p]:mb-1 [&_a]:text-accentBlue [&_a]:underline"
