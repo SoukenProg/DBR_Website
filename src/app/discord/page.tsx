@@ -47,7 +47,7 @@ export default function DiscordPage() {
                 <h2 className="text-2xl font-bold mb-4 text-yellow-800 dark:text-yellow-400">📝 参加手続き</h2>
                 <div className="space-y-3 text-gray-700 dark:text-gray-300">
                     <p>
-                        荒らし防止のため、サーバー加入直後では閲覧可能チャンネルを大幅に制限しております。
+                        管理上の理由により、サーバー加入直後では閲覧可能チャンネルを大幅に制限しております。
                     </p>
                     <p className="font-semibold text-yellow-800 dark:text-yellow-300">
                         利用規約に同意いただける方は、専用チャンネルで自己紹介をお願いします。

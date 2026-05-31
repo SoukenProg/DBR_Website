@@ -41,27 +41,39 @@ docker compose -f docker-compose.dev.yml up --build
 
 オプションの環境変数:
 - `NEXT_PUBLIC_GOOGLE_ANALYTICS_ID` - Google Analytics 4の測定ID（例: G-XXXXXXXXXX）
+- `MICROCMS_FORCE_MOCK=true` - APIキーがあってもモックデータを強制使用（開発・デバッグ用）
 
-microCMSの認証情報がない場合、`src/lib/cms.ts` で定義されたモックデータにフォールバックします。
+microCMSの認証情報がない場合、`src/lib/mock-data.local.ts`（gitignore対象）で定義したモックデータにフォールバックします。このファイルは各自のローカル環境でのみ存在し、リポジトリには含まれません。ファイルが存在しない場合は空データで動作します。
 
 ## アーキテクチャ
 
 ### コンテンツ管理（microCMS連携）
 
-サイトは3つのコンテンツタイプを持つmicroCMSを使用します:
+サイトは4つのコンテンツタイプを持つmicroCMSを使用します:
 
 1. **work** - 音楽作品/制作物
    - `project` フィールド: テキスト（"System D.B.R." または "Souken521"）プロジェクト区別用
    - `tags` フィールド: 複数選択（例: "future-bass", "game-ready"）
    - `platforms` フィールド: 繰り返し（`label`, `url`, `iconKey`）配信プラットフォーム（YouTube、BOOTHなど）用
+   - `tracks` フィールド: 繰り返し（`title`, `artist`）曲目一覧。作品詳細ページの TRACKLIST セクションに表示
 
 2. **event** - イベント/即売会出展情報
    - `project` フィールド: テキスト（"System D.B.R." または "Souken521"）プロジェクト区別用
+   - `date` / `enddate` フィールド: 開始日・終了日（JST変換して表示）
+   - `place`, `space`, `mapUrl` フィールド: 会場情報
+   - `notes` フィールド: リッチテキスト（INTRODUCTION セクション）
+   - `credits` フィールド: 繰り返し（`role`, `name`, `url`）クレジット情報
    - `lineup` フィールド: 繰り返し（work参照 + イベント固有のメタデータ）
-   - 各lineupアイテムには: `price`, `isNew`, `isLimited`, `boothUrl`, `sampleUrl`, `note`, `order`
+   - 各lineupアイテムには: `price`, `isNew`, `isLimited`, `boothUrl`, `sampleUrl`, `youtubeUrl`, `note`, `order`
+   - `youtubeUrl` はlineupアイテム単位でYouTube動画を埋め込み表示
    - イベント詳細取得時は `?depth=2` クエリパラメータを使用して参照されたworkを展開する
 
-3. **link** - SNS/外部リンク
+3. **notice** - お知らせ
+   - `title`, `slug`, `body`（リッチテキスト）, `category`, `important`（boolean）, `date` フィールド
+   - `important: true` の記事はバナーや重要お知らせ欄に優先表示
+   - revalidate は60秒（他より短め）
+
+4. **link** - SNS/外部リンク
 
 **プロジェクトフィルタ機能:**
 - 作品一覧ページ（`/works`）とイベント一覧ページ（`/events`）は、プロジェクトごとにフィルタリング可能
@@ -80,9 +92,11 @@ App Router（Next.js 16）でTypeScriptの型付きルートを有効化:
 ```
 /                           # ホームページ（最新作品、直近イベント表示）
 /works                      # 作品一覧
-/works/[slug]              # 作品詳細ページ
+/works/[slug]              # 作品詳細ページ（TRACKLIST・プラットフォームリンク表示）
 /events                     # イベント一覧
-/events/[slug]             # イベント詳細ページ（?depth=2使用）
+/events/[slug]             # イベント詳細ページ（?depth=2使用、lineup単位YouTube埋め込み）
+/notices                    # お知らせ一覧（重要/一般分離表示）
+/notices/[slug]            # お知らせ詳細ページ
 /links                      # SNSリンクページ
 /about                      # プロフィール/紹介ページ
 /discord                    # Discordのお知らせページ
@@ -110,10 +124,27 @@ App Router（Next.js 16）でTypeScriptの型付きルートを有効化:
   - `accentPurple`（Souken521のブランドカラー）
 - ダークテーマとライトテーマを併用
 
+### モックデータの管理
+
+ローカル開発では `src/lib/mock-data.local.ts`（gitignore対象）にモックデータを定義します:
+
+```ts
+// src/lib/mock-data.local.ts の構造例
+export const MOCK_WORKS: Work[] = [...];
+export const MOCK_EVENTS: Event[] = [...];
+export const MOCK_LINKS: { label: string; url: string }[] = [...];
+export const MOCK_NOTICES: Notice[] = [...];
+```
+
+- このファイルはリポジトリに含まれないため、各自のローカルで作成する
+- `placehold.co` はモック用画像として利用可能（Next.js Image 許可ホスト登録済み）
+- `MICROCMS_FORCE_MOCK=true` を設定すると、本番APIキーがある環境でもモックを使用できる
+
 ### 画像処理
 
 Next.js Imageコンポーネントの設定でmicroCMSアセットを許可:
-- リモートパターン: `https://**.microcms-assets.io`
+- リモートパターン: `https://**.microcms-assets.io`（microCMS本番画像）
+- リモートパターン: `https://placehold.co`（モックデータ用プレースホルダ）
 - `next.config.mjs` で設定
 
 ### デプロイ
@@ -121,7 +152,7 @@ Next.js Imageコンポーネントの設定でmicroCMSアセットを許可:
 本番環境は **Cloudflare Workers + OpenNext アダプタ** でデプロイする:
 
 ```bash
-pnpm cf:build    # Next.js ビルド → OpenNext で .open-next/ に変換
+MICROCMS_FORCE_MOCK=false pnpm cf:build    # Next.js ビルド → OpenNext で .open-next/ に変換
 pnpm cf:deploy   # wrangler で Cloudflare Workers にデプロイ
 ```
 
@@ -130,7 +161,7 @@ pnpm cf:deploy   # wrangler で Cloudflare Workers にデプロイ
 
 **環境変数・Secrets の登録:**
 - `wrangler secret put <KEY>` で機密値を登録（APIキー等）
-- 非機密の変数は `wrangler.toml` の `[vars]` セクション、またはダッシュボードの Variables で管理
+- 非機密の変数は `wrangler.jsonc` の `[vars]` セクション、またはダッシュボードの Variables で管理
 - ローカル開発用は `.dev.vars`（gitignore済み）に記載
 
 **旧 Docker 本番デプロイについて:**
@@ -175,9 +206,6 @@ Google Analytics 4を`@next/third-parties/google`パッケージで導入:
 
 - 技術的な意思決定・コードレビュー・アーキテクチャ設計を担当
 - コード品質の最終責任を持つ
-
-## 役割
-
 - 実装作業を中心に担当
 - 指示に基づいてコードを書き、テストし、コミットする
 
