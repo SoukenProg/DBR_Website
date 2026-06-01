@@ -18,7 +18,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* 基本方針 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
+            <div className="bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-accentBlue">基本方針</h2>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                     System D.B.R.（以下「当サークル」）は、お客様の個人情報保護の重要性について認識し、
@@ -28,7 +28,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* 個人情報の定義 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
+            <div className="bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-accentGreen">個人情報の定義</h2>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                     本ポリシーにおける「個人情報」とは、個人情報保護法第2条第1項により定義された個人情報、
@@ -39,7 +39,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* 個人情報の収集方法 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
+            <div className="bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-accentRed">個人情報の収集方法</h2>
                 <div className="space-y-3 text-gray-700 dark:text-gray-300">
                     <p>当サークルは、以下の場合に個人情報を収集することがあります：</p>
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* 個人情報の利用目的 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
+            <div className="bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-accentBlue">個人情報の利用目的</h2>
                 <div className="space-y-3 text-gray-700 dark:text-gray-300">
                     <p>収集した個人情報は、以下の目的で利用いたします：</p>
@@ -77,7 +77,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* 個人情報の管理 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
+            <div className="bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-accentGreen">個人情報の管理</h2>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                     当サークルは、個人情報の正確性を保ち、これを安全に管理いたします。
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* Cookie等の使用 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg p-8 mb-8">
+            <div className="bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-8 mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-accentRed">Cookie等の使用</h2>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                     当サイトでは、ユーザー体験の向上のためCookieを使用する場合があります。
@@ -103,7 +103,7 @@ export default function PrivacyPage() {
             </div>
 
             {/* フッター */}
-            <div className="text-center text-gray-600 dark:text-gray-400 text-sm mt-8 p-6 bg-gray-900/50 rounded-lg border border-gray-800">
+            <div className="text-center text-gray-600 dark:text-gray-400 text-sm mt-8 p-6 bg-gray-100 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-800">
                 <p className="mb-2">
                     本ポリシーは予告なく改定される場合があります。
                 </p>

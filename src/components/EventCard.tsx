@@ -28,7 +28,7 @@ export function EventCard({event}: { event: { title: string; slug: string; date?
                     <span className={`text-[10px] px-2 py-0.5 rounded border ${
                         projectName === "Souken521"
                             ? "bg-accentPurple/30 border-accentPurple/50 text-accentPurple"
-                            : "bg-accentRed/30 border-accentRed/50 text-white"
+                            : "bg-accentRed/30 border-accentRed/50 text-accentRed"
                     }`}>
                         {projectName}
                     </span>

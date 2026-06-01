@@ -47,7 +47,7 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                     <section>
                         <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-4">INTRODUCTION</h2>
                         <div
-                            className="text-white/80 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
+                            className="text-gray-700 dark:text-white/80 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
                             dangerouslySetInnerHTML={{__html: ev.notes}}
                         />
                     </section>
@@ -69,32 +69,32 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                         )}
                         <dl className="space-y-4 text-sm">
                             <div className="flex gap-4">
-                                <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Title</dt>
-                                <dd className="text-white">{ev.title}</dd>
+                                <dt className="w-28 shrink-0 text-gray-400 dark:text-white/40 uppercase tracking-wider text-xs pt-0.5">Title</dt>
+                                <dd className="text-gray-900 dark:text-white">{ev.title}</dd>
                             </div>
                             {(ev.date || ev.enddate) && (
                                 <div className="flex gap-4">
-                                    <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Date</dt>
-                                    <dd className="text-white">
+                                    <dt className="w-28 shrink-0 text-gray-400 dark:text-white/40 uppercase tracking-wider text-xs pt-0.5">Date</dt>
+                                    <dd className="text-gray-900 dark:text-white">
                                         {formatDate(ev.date)}{ev.enddate ? ` ~ ${formatDate(ev.enddate)}` : ""}
                                     </dd>
                                 </div>
                             )}
                             {ev.place && (
                                 <div className="flex gap-4">
-                                    <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Venue</dt>
-                                    <dd className="text-white">{ev.place}</dd>
+                                    <dt className="w-28 shrink-0 text-gray-400 dark:text-white/40 uppercase tracking-wider text-xs pt-0.5">Venue</dt>
+                                    <dd className="text-gray-900 dark:text-white">{ev.place}</dd>
                                 </div>
                             )}
                             {ev.space && (
                                 <div className="flex gap-4">
-                                    <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Space</dt>
-                                    <dd className="text-white">{ev.space}</dd>
+                                    <dt className="w-28 shrink-0 text-gray-400 dark:text-white/40 uppercase tracking-wider text-xs pt-0.5">Space</dt>
+                                    <dd className="text-gray-900 dark:text-white">{ev.space}</dd>
                                 </div>
                             )}
                             {ev.mapUrl && (
                                 <div className="flex gap-4">
-                                    <dt className="w-28 shrink-0 text-white/40 uppercase tracking-wider text-xs pt-0.5">Map</dt>
+                                    <dt className="w-28 shrink-0 text-gray-400 dark:text-white/40 uppercase tracking-wider text-xs pt-0.5">Map</dt>
                                     <dd>
                                         <a className="text-accentBlue underline" href={ev.mapUrl} target="_blank" rel="noreferrer">地図を見る</a>
                                     </dd>
@@ -118,7 +118,7 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                     : undefined;
                                 const slug = w?.slug ?? w?.id;
                                 return (
-                                    <li key={i} className="flex gap-4 border-b border-white/10 pb-4">
+                                    <li key={i} className="flex gap-4 border-b border-gray-200 dark:border-white/10 pb-4">
                                         <span className="text-accentRed font-mono text-sm w-8 shrink-0 pt-1">
                                             {String(i + 1).padStart(2, '0')}
                                         </span>
@@ -131,7 +131,7 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                         )}
                                         <div className="flex-1 min-w-0">
                                             <div className="flex flex-wrap items-center gap-2">
-                                                <a className="font-semibold text-white hover:underline" href={`/works/${slug}`}>
+                                                <a className="font-semibold text-gray-900 dark:text-white hover:underline" href={`/works/${slug}`}>
                                                     {title}
                                                 </a>
                                                 {item.isNew && (
@@ -142,7 +142,7 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                                 )}
                                             </div>
                                             {typeof item.price === "number" && (
-                                                <div className="text-white/60 text-sm mt-1">¥{item.price.toLocaleString()}</div>
+                                                <div className="text-gray-500 dark:text-white/60 text-sm mt-1">¥{item.price.toLocaleString()}</div>
                                             )}
                                             {(() => {
                                                 const tracks: { title: string; artist?: string }[] =
@@ -151,11 +151,11 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                                         : [{title: title}];
                                                 return (
                                                     <div className="mt-2">
-                                                        <span className="text-[10px] text-white/40 uppercase tracking-wider">曲目一覧</span>
+                                                        <span className="text-[10px] text-gray-400 dark:text-white/40 uppercase tracking-wider">曲目一覧</span>
                                                         <ol className="mt-1 space-y-0.5">
                                                             {tracks.map((track, ti) => (
-                                                                <li key={ti} className="flex gap-2 text-xs text-white/60">
-                                                                    <span className="text-white/30 font-mono w-4 shrink-0">{ti + 1}.</span>
+                                                                <li key={ti} className="flex gap-2 text-xs text-gray-500 dark:text-white/60">
+                                                                    <span className="text-gray-400 dark:text-white/30 font-mono w-4 shrink-0">{ti + 1}.</span>
                                                                     <span>{track.title}{track.artist ? ` / ${track.artist}` : ""}</span>
                                                                 </li>
                                                             ))}
@@ -165,7 +165,7 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                             })()}
                                             {item.note && (
                                                 <div
-                                                    className="text-white/50 text-xs mt-1 [&_p]:mb-1 [&_a]:text-accentBlue [&_a]:underline"
+                                                    className="text-gray-500 dark:text-white/50 text-xs mt-1 [&_p]:mb-1 [&_a]:text-accentBlue [&_a]:underline"
                                                     dangerouslySetInnerHTML={{__html: item.note}}
                                                 />
                                             )}
@@ -203,9 +203,9 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                         <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-6">CREDIT</h2>
                         <ul className="space-y-3">
                             {ev.credits.map((c, i) => (
-                                <li key={i} className="flex flex-wrap items-center gap-3 border-b border-white/10 pb-3">
-                                    <span className="text-white/40 text-xs w-32 shrink-0">{c.role}</span>
-                                    <span className="text-white font-semibold">{c.name}</span>
+                                <li key={i} className="flex flex-wrap items-center gap-3 border-b border-gray-200 dark:border-white/10 pb-3">
+                                    <span className="text-gray-400 dark:text-white/40 text-xs w-32 shrink-0">{c.role}</span>
+                                    <span className="text-gray-900 dark:text-white font-semibold">{c.name}</span>
                                     {c.url && (
                                         <a
                                             href={c.url}

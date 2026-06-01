@@ -60,7 +60,7 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
             {work.description && (
                 <div className="mb-8">
                     <div
-                        className="text-white/80 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
+                        className="text-gray-700 dark:text-white/80 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
                         dangerouslySetInnerHTML={{__html: work.description}}
                     />
                 </div>
@@ -76,13 +76,13 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
                         <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-4">TRACKLIST</h2>
                         <ol className="space-y-2">
                             {tracks.map((track, i) => (
-                                <li key={i} className="flex items-baseline gap-3 border-b border-white/10 pb-2">
+                                <li key={i} className="flex items-baseline gap-3 border-b border-gray-200 dark:border-white/10 pb-2">
                                     <span className="text-accentRed font-mono text-sm w-7 shrink-0">
                                         {String(i + 1).padStart(2, '0')}
                                     </span>
-                                    <span className="text-white font-medium">{track.title}</span>
+                                    <span className="text-gray-900 dark:text-white font-medium">{track.title}</span>
                                     {track.artist && (
-                                        <span className="text-white/50 text-sm ml-auto shrink-0">{track.artist}</span>
+                                        <span className="text-gray-500 dark:text-white/50 text-sm ml-auto shrink-0">{track.artist}</span>
                                     )}
                                 </li>
                             ))}
@@ -94,7 +94,7 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
             {/* タグ */}
             {Array.isArray(work.tags) && work.tags.length > 0 && (
                 <div className="mb-8">
-                    <h2 className="font-semibold mb-3 text-white/90">Tags</h2>
+                    <h2 className="font-semibold mb-3 text-gray-800 dark:text-white/90">Tags</h2>
                     <div className="flex flex-wrap gap-2">
                         {work.tags.map((t, i) => {
                             // tagsがオブジェクトの場合と文字列の場合に対応
@@ -122,7 +122,7 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
 
             {/* 配信・頒布リンク */}
             <div>
-                <h2 className="font-semibold mb-3 text-white/90">配信・頒布リンク</h2>
+                <h2 className="font-semibold mb-3 text-gray-800 dark:text-white/90">配信・頒布リンク</h2>
                 <PlatformsList items={work.platforms}/>
             </div>
         </div>
