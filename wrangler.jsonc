@@ -8,7 +8,12 @@
         "directory": ".open-next/assets",
         "binding": "ASSETS"
     },
-
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  },
     // 本番環境の vars（機密でないもの）
     // 機密情報（APIキー等）は `wrangler secret put <KEY>` で登録すること
     "vars": {
