@@ -1,4 +1,5 @@
 import {getWork} from "@/lib/cms";
+import Image from "next/image";
 import {notFound} from "next/navigation";
 import {PlatformsList} from "@/components/PlatformsList";
 import type {ProjectField} from "@/lib/cms";
@@ -48,10 +49,12 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
             {/* ジャケット画像 */}
             {jacketUrl ? (
                 <div className="mb-8">
-                    <img
+                    <Image
                         src={jacketUrl}
                         alt={work.title}
-                        className="w-full max-w-md rounded-lg shadow-lg"
+                        width={640}
+                        height={640}
+                        className="w-full max-w-md rounded-lg shadow-lg object-cover"
                     />
                 </div>
             ) : null}

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 
 export default async function NoticesPage() {
     const notices = await listNotices();
+    // eslint-disable-next-line react-hooks/purity
     const now = Date.now();
     const allImportant = notices.filter((n) => n.important);
     const importantNotices = allImportant.filter((n, i) =>

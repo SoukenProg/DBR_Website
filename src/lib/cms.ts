@@ -69,7 +69,6 @@ export type Event = {
 };
 
 // mock-data.local.ts はgitignore対象のローカルファイル。存在しない場合は空データにフォールバック。
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const LOCAL = (() => { try { return require('./mock-data.local'); } catch { return {}; } })();
 
 const MOCK = {

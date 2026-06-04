@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type {ProjectField, ImageField} from "@/lib/cms";
 import {formatDate} from "@/lib/formatDate";
 
@@ -28,7 +29,9 @@ export function WorkCard({work}: {
             className="group border border-gray-300 dark:border-gray-800 rounded-lg overflow-hidden hover:border-accentBlue/50 transition-all duration-300 bg-gray-50 dark:bg-gray-900/50"
         >
             {jacketUrl ? (
-                <img src={jacketUrl} alt={work.title} className="aspect-square object-cover"/>
+                <div className="relative aspect-square w-full">
+                    <Image src={jacketUrl} alt={work.title} fill className="object-cover"/>
+                </div>
             ) : (
                 <div className="aspect-square bg-gradient-to-br from-accentRed/10 to-accentBlue/10"/>
             )}

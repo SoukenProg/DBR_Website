@@ -123,10 +123,12 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                             {String(i + 1).padStart(2, '0')}
                                         </span>
                                         {itemJacketUrl && (
-                                            <img
+                                            <Image
                                                 src={itemJacketUrl}
                                                 alt={title}
-                                                className="w-16 h-16 object-cover rounded shrink-0"
+                                                width={64}
+                                                height={64}
+                                                className="object-cover rounded shrink-0"
                                             />
                                         )}
                                         <div className="flex-1 min-w-0">

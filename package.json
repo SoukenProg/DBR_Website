@@ -1,18 +1,18 @@
 {
   "name": "souken-dbr-website",
   "private": true,
-  "version": "0.5.0",
+  "version": "0.8.0",
   "scripts": {
     "dev": "next dev --hostname 0.0.0.0",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "cf:build": "next build && npx @opennextjs/cloudflare build",
     "cf:preview": "npx wrangler dev --port 8787",
     "cf:deploy": "npx wrangler deploy"
   },
   "dependencies": {
-    "@next/third-parties": "16.2.1",
+    "@next/third-parties": "16.2.7",
     "@vercel/analytics": "2.0.1",
     "lucide-react": "0.577.0",
     "next": "^16.2.7",
@@ -27,27 +27,13 @@
     "@types/node": "25.5.0",
     "@types/react": "19.2.14",
     "autoprefixer": "10.4.27",
-    "eslint": "10.1.0",
-    "eslint-config-next": "16.2.1",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.7",
     "postcss": "8.5.8",
     "tailwindcss": "4.2.2",
     "typescript": "5.9.3",
     "typescript-eslint": "^8.57.1",
     "wrangler": "latest"
   },
-  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319",
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.2.0"
-    },
-    "onlyBuiltDependencies": [
-      "@tailwindcss/oxide",
-      "esbuild",
-      "unrs-resolver",
-      "workerd"
-    ],
-    "ignoredBuiltDependencies": [
-      "sharp"
-    ]
-  }
+  "packageManager": "pnpm@11.5.1+sha512.93f7b57422ea7068257235b4c16eb60762eb68e1dc23723199cc739043ea9be2c4143274a399d8c6defa2b1176226d9ca1c4b63482d6200c1a8fbaa78c1d1485"
 }

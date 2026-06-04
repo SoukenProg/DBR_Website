@@ -19,22 +19,22 @@ export default async function HomePage() {
     const dbrWork = works.find(w => getProjectName(w) === "System D.B.R.");
     const soukenWork = works.find(w => getProjectName(w) === "Souken521");
     const upcoming = events?.[0];
+    // eslint-disable-next-line react-hooks/purity
+    const now = Date.now();
+    const allImportant = notices.filter((n) => n.important);
+    const importantNotices = allImportant.filter((n, i) =>
+        i < 3 || (!!n.date && (now - new Date(n.date).getTime()) / 86400000 <= 30)
+    );
+    const importantSlugs = new Set(importantNotices.map((n) => n.slug));
+    const latest3 = notices.filter((n) => !importantSlugs.has(n.slug)).slice(0, 3);
     return (
         <div>
             <Hero dbrWork={dbrWork} soukenWork={soukenWork}/>
 
             <div className="max-w-4xl mx-auto px-6 py-12 space-y-8">
                 {/* お知らせ */}
-                {notices.length > 0 && (() => {
-                    const now = Date.now();
-                    const allImportant = notices.filter((n) => n.important);
-                    const importantNotices = allImportant.filter((n, i) =>
-                        i < 3 || (!!n.date && (now - new Date(n.date).getTime()) / 86400000 <= 30)
-                    );
-                    const importantSlugs = new Set(importantNotices.map((n) => n.slug));
-                    const latest3 = notices.filter((n) => !importantSlugs.has(n.slug)).slice(0, 3);
-                    return (
-                        <section className="bg-white/10 border border-white/20 rounded-lg p-8">
+                {notices.length > 0 && (
+                    <section className="bg-white/10 border border-white/20 rounded-lg p-8">
                             <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">お知らせ</h2>
 
                             {importantNotices.length > 0 && (
@@ -79,9 +79,8 @@ export default async function HomePage() {
                             <Link href="/notices" className="text-accentBlue hover:text-accentBlue/80 text-sm underline">
                                 すべてのお知らせを見る →
                             </Link>
-                        </section>
-                    );
-                })()}
+                    </section>
+                )}
                 {/* 作品一覧 */}
                 <section className="bg-gradient-to-br from-accentRed/10 to-accentBlue/10 border border-accentRed/30 rounded-lg p-8">
                     <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-900 dark:text-white">作品一覧</h2>
