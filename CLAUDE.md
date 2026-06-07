@@ -22,7 +22,7 @@ pnpm lint                 # ESLint実行
 
 ### Cloudflare Workers デプロイ（本番）
 ```bash
-pnpm cf:build             # Next.js + OpenNext ビルド → .open-next/ に出力
+MICROCMS_FORCE_MOCK=false pnpm cf:build             # Next.js + OpenNext ビルド → .open-next/ に出力
 pnpm cf:preview           # Wrangler でローカルプレビュー（ポート8787）
 pnpm cf:deploy            # Cloudflare Workers にデプロイ
 ```

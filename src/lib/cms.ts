@@ -33,6 +33,7 @@ export type Work = {
     tags?: string[] | any[]; // 文字列配列またはオブジェクト配列
     platforms?: Platform[];
     project?: ProjectField | ProjectField[]; // 配列形式もサポート
+    unlisted?: boolean; // trueの場合、作品一覧には表示しない（イベントlineupからは参照可能）
 };
 
 export type EventLineupItem = {
@@ -83,8 +84,8 @@ function hasMicroCMSEnv() {
 }
 
 export async function getLatestWork(): Promise<Work | undefined> {
-    if (!hasMicroCMSEnv()) return MOCK.works[0];
-    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?limit=1&orders=-releaseDate`;
+    if (!hasMicroCMSEnv()) return MOCK.works.find(w => !w.unlisted);
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?limit=1&orders=-releaseDate&filters=unlisted[not_equals]true`;
     const res = await fetch(endpoint, {
         headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
         next: {revalidate: 300}
@@ -96,11 +97,12 @@ export async function getLatestWork(): Promise<Work | undefined> {
 export async function getLatestWorkByProject(projectName: string): Promise<Work | undefined> {
     if (!hasMicroCMSEnv()) {
         return MOCK.works.find(w => {
+            if (w.unlisted) return false;
             const project = Array.isArray(w.project) ? w.project[0] : w.project;
             return typeof project === 'string' ? project === projectName : project?.name === projectName;
         });
     }
-    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?filters=project[contains]${projectName}&limit=1&orders=-releaseDate`;
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?filters=project[contains]${projectName}[and]unlisted[not_equals]true&limit=1&orders=-releaseDate`;
     const res = await fetch(endpoint, {
         headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
         next: {revalidate: 300}
@@ -110,8 +112,8 @@ export async function getLatestWorkByProject(projectName: string): Promise<Work 
 }
 
 export async function listWorks(): Promise<Work[]> {
-    if (!hasMicroCMSEnv()) return MOCK.works;
-    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?limit=100&orders=-releaseDate`;
+    if (!hasMicroCMSEnv()) return MOCK.works.filter(w => !w.unlisted);
+    const endpoint = `https://${process.env.MICROCMS_SERVICE_DOMAIN}.microcms.io/api/v1/work?limit=100&orders=-releaseDate&filters=unlisted[not_equals]true`;
     const res = await fetch(endpoint, {
         headers: {"X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY!},
         next: {revalidate: 300}

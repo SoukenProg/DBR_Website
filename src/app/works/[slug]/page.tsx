@@ -3,6 +3,7 @@ import Image from "next/image";
 import {notFound} from "next/navigation";
 import {PlatformsList} from "@/components/PlatformsList";
 import type {ProjectField} from "@/lib/cms";
+import type {Metadata} from "next";
 import {formatDate} from "@/lib/formatDate";
 
 // projectから名前を取得（配列、オブジェクト、文字列に対応）
@@ -16,6 +17,13 @@ function getProjectName(project?: ProjectField | ProjectField[] | string): strin
         return first.name;
     }
     return project.name;
+}
+
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const params = await props.params;
+    const work = await getWork(params.slug);
+    if (!work) return {};
+    return work.unlisted ? {robots: {index: false, follow: false}} : {};
 }
 
 export default async function WorkDetail(props: { params: Promise<{ slug: string }> }) {
