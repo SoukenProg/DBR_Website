@@ -4,7 +4,7 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-RUN corepack enable && corepack prepare pnpm@11.5.1 --activate
+RUN corepack enable && corepack prepare pnpm@11.5.2 --activate
 
 EXPOSE 3000
 

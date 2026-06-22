@@ -47,7 +47,7 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                     <section>
                         <h2 className="text-xs tracking-widest text-accentRed font-semibold mb-4">INTRODUCTION</h2>
                         <div
-                            className="text-gray-700 dark:text-white/80 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
+                            className="prose dark:prose-invert max-w-none"
                             dangerouslySetInnerHTML={{__html: ev.notes}}
                         />
                     </section>

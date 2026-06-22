@@ -71,7 +71,7 @@ export default async function WorkDetail(props: { params: Promise<{ slug: string
             {work.description && (
                 <div className="mb-8">
                     <div
-                        className="text-gray-700 dark:text-white/80 leading-relaxed [&_p]:mb-4 [&_a]:text-accentBlue [&_a]:underline [&_strong]:font-bold [&_em]:italic"
+                        className="prose dark:prose-invert max-w-none"
                         dangerouslySetInnerHTML={{__html: work.description}}
                     />
                 </div>

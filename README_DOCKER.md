@@ -24,16 +24,6 @@ docker compose up --build -d
 
 ポート `4004` でアクセスできます。
 
-## ポートフォリオページを含む場合
-
-`data.private.ts` はビルド時に必要なため、`docker build` 前にサーバー上に配置してください。
-
-```bash
-cp src/app/portfolio/data.example.ts src/app/portfolio/data.private.ts
-# data.private.ts を編集してからビルド
-docker compose up --build -d
-```
-
 ## ポート構成
 
 | ホスト | コンテナ |
