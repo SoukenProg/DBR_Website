@@ -14,4 +14,4 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: sh -c "pnpm install --frozen-lockfile && pnpm dev --hostname 0.0.0.0"
+    command: sh -c "pnpm install --frozen-lockfile && pnpm dev"
