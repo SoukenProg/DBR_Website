@@ -13,3 +13,6 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
   workerd: true
+
+minimumReleaseAgeExclude:
+  - '@types/node@26.1.2'

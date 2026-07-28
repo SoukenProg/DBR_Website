@@ -12,6 +12,9 @@ const nextConfig = {
         ]
     },
     typedRoutes: true,
+  experimental: {
+    useTypeScriptCli: true,
+  },
 };
 
 export default nextConfig;
