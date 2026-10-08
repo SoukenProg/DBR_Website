@@ -38,18 +38,20 @@ export default function LineupItem({
     embedUrl,
 }: LineupItemProps) {
     return (
-        <li className="flex items-center gap-4 border-b border-gray-200 dark:border-white/10 pb-4">
-            <span className="text-accentRed font-mono text-sm w-8 shrink-0">
-                {String(index + 1).padStart(2, '0')}
-            </span>
-            {jacketUrl && (
-                <div
-                    className="relative shrink-0 rounded overflow-hidden"
-                    style={{width: JACKET_SIZE, height: JACKET_SIZE}}
-                >
-                    <Image src={jacketUrl} alt={title} fill className="object-cover"/>
-                </div>
-            )}
+        <li className="flex flex-col md:flex-row md:items-center gap-4 border-b border-gray-200 dark:border-white/10 pb-4">
+            <div className="flex items-center gap-4 md:contents">
+                <span className="text-accentRed font-mono text-sm w-8 shrink-0">
+                    {String(index + 1).padStart(2, '0')}
+                </span>
+                {jacketUrl && (
+                    <div
+                        className="relative shrink-0 rounded overflow-hidden"
+                        style={{width: JACKET_SIZE, height: JACKET_SIZE}}
+                    >
+                        <Image src={jacketUrl} alt={title} fill className="object-cover"/>
+                    </div>
+                )}
+            </div>
             <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
                     <a className="font-semibold text-gray-900 dark:text-white hover:underline" href={`/works/${slug}`}>
