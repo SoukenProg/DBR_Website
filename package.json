@@ -12,29 +12,29 @@
     "cf:deploy": "npx wrangler deploy"
   },
   "dependencies": {
-    "@next/third-parties": "16.2.12",
+    "@next/third-parties": "16.4.0",
     "@tailwindcss/typography": "^0.5.20",
     "@vercel/analytics": "2.0.1",
-    "lucide-react": "1.27.0",
-    "next": "^16.2.12",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
-    "react-hook-form": "7.83.0",
-    "zod": "4.4.3"
+    "lucide-react": "1.52.0",
+    "next": "^16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-hook-form": "7.89.0",
+    "zod": "4.6.5"
   },
   "devDependencies": {
-    "@opennextjs/cloudflare": "1.20.2",
+    "@opennextjs/cloudflare": "1.20.9",
     "@tailwindcss/postcss": "^4.3.3",
-    "@types/node": "26.1.2",
-    "@types/react": "19.2.17",
-    "autoprefixer": "10.5.4",
-    "eslint": "10.8.0",
-    "eslint-config-next": "16.2.12",
-    "postcss": "8.5.23",
+    "@types/node": "26.6.4",
+    "@types/react": "19.3.0",
+    "autoprefixer": "10.6.1",
+    "eslint": "10.12.0",
+    "eslint-config-next": "16.4.0",
+    "postcss": "8.5.29",
     "tailwindcss": "4.3.3",
     "typescript": "7.0.2",
-    "typescript-eslint": "^8.65.0",
+    "typescript-eslint": "^8.71.1",
     "wrangler": "latest"
   },
-  "packageManager": "pnpm@11.17.0+sha512.cca3cea332ad254bb84145f966d19f4879615210346fc92c79a047f23a0d7b3cca3c3792f0076ba1f1831d277efbcf0a9119b31a9a60eca7fb3d6231f331ef72"
+  "packageManager": "pnpm@12.10.1"
 }
