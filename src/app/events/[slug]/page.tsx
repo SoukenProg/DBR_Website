@@ -1,6 +1,7 @@
 import {getEvent} from "@/lib/cms";
 import {notFound} from "next/navigation";
 import Image from "next/image";
+import LineupItem from "@/components/LineupItem";
 
 export default async function EventDetail(props: { params: Promise<{ slug: string }> }) {
     const params = await props.params;
@@ -117,82 +118,26 @@ export default async function EventDetail(props: { params: Promise<{ slug: strin
                                     ? (typeof rawJacket === 'string' ? rawJacket : rawJacket.url)
                                     : undefined;
                                 const slug = w?.slug ?? w?.id;
+                                const tracks: { title: string; artist?: string }[] =
+                                    w?.tracks && w.tracks.length > 0
+                                        ? w.tracks
+                                        : [{title: title}];
                                 return (
-                                    <li key={i} className="flex gap-4 border-b border-gray-200 dark:border-white/10 pb-4">
-                                        <span className="text-accentRed font-mono text-sm w-8 shrink-0 pt-1">
-                                            {String(i + 1).padStart(2, '0')}
-                                        </span>
-                                        {itemJacketUrl && (
-                                            <Image
-                                                src={itemJacketUrl}
-                                                alt={title}
-                                                width={64}
-                                                height={64}
-                                                className="object-cover rounded shrink-0"
-                                            />
-                                        )}
-                                        <div className="flex-1 min-w-0">
-                                            <div className="flex flex-wrap items-center gap-2">
-                                                <a className="font-semibold text-gray-900 dark:text-white hover:underline" href={`/works/${slug}`}>
-                                                    {title}
-                                                </a>
-                                                {item.isNew && (
-                                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-accentGreen/20 border border-accentGreen/40 text-accentGreen">NEW</span>
-                                                )}
-                                                {item.isLimited && (
-                                                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-accentRed/20 border border-accentRed/40 text-accentRed">LIMITED</span>
-                                                )}
-                                            </div>
-                                            {typeof item.price === "number" && (
-                                                <div className="text-gray-500 dark:text-white/60 text-sm mt-1">¥{item.price.toLocaleString()}</div>
-                                            )}
-                                            {(() => {
-                                                const tracks: { title: string; artist?: string }[] =
-                                                    w?.tracks && w.tracks.length > 0
-                                                        ? w.tracks
-                                                        : [{title: title}];
-                                                return (
-                                                    <div className="mt-2">
-                                                        <span className="text-[10px] text-gray-400 dark:text-white/40 uppercase tracking-wider">曲目一覧</span>
-                                                        <ol className="mt-1 space-y-0.5">
-                                                            {tracks.map((track, ti) => (
-                                                                <li key={ti} className="flex gap-2 text-xs text-gray-500 dark:text-white/60">
-                                                                    <span className="text-gray-400 dark:text-white/30 font-mono w-4 shrink-0">{ti + 1}.</span>
-                                                                    <span>{track.title}{track.artist ? ` / ${track.artist}` : ""}</span>
-                                                                </li>
-                                                            ))}
-                                                        </ol>
-                                                    </div>
-                                                );
-                                            })()}
-                                            {item.note && (
-                                                <div
-                                                    className="text-gray-500 dark:text-white/50 text-xs mt-1 [&_p]:mb-1 [&_a]:text-accentBlue [&_a]:underline"
-                                                    dangerouslySetInnerHTML={{__html: item.note}}
-                                                />
-                                            )}
-                                            {(item.boothUrl || item.sampleUrl) && (
-                                                <div className="flex gap-3 mt-2 text-sm">
-                                                    {item.boothUrl && (
-                                                        <a className="text-accentBlue underline" href={item.boothUrl} target="_blank" rel="noreferrer">BOOTH</a>
-                                                    )}
-                                                    {item.sampleUrl && (
-                                                        <a className="text-accentBlue underline" href={item.sampleUrl} target="_blank" rel="noreferrer">試聴</a>
-                                                    )}
-                                                </div>
-                                            )}
-                                            {item.youtubeUrl && (
-                                                <div className="relative aspect-video mt-3 rounded overflow-hidden">
-                                                    <iframe
-                                                        className="absolute inset-0 w-full h-full"
-                                                        src={toEmbedUrl(item.youtubeUrl)}
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowFullScreen
-                                                    />
-                                                </div>
-                                            )}
-                                        </div>
-                                    </li>
+                                    <LineupItem
+                                        key={i}
+                                        index={i}
+                                        title={title}
+                                        slug={slug}
+                                        jacketUrl={itemJacketUrl}
+                                        isNew={item.isNew}
+                                        isLimited={item.isLimited}
+                                        price={item.price}
+                                        tracks={tracks}
+                                        note={item.note}
+                                        boothUrl={item.boothUrl}
+                                        sampleUrl={item.sampleUrl}
+                                        embedUrl={item.youtubeUrl ? toEmbedUrl(item.youtubeUrl) : undefined}
+                                    />
                                 );
                             })}
                         </ol>
